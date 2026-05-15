@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "analyze": {
+      "ANALYZE00": {
+        "x": "s14",
+        "y": 21
+      },
+      "ANALYZE01": {
+        "x": "s28",
+        "y": 41
+      },
+      "ANALYZE02": {
+        "x": "s3c",
+        "y": 61
+      }
+    }
+  },
+  "new": {
+    "analyze": {
+      "analyze_ref01": {
+        "x": "s50",
+        "y": 81
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# BasicDownloadFlow
+
+main: kit: flow: BasicDownloadFlow:
+{
+  entity: "download",
+  kind: "basic",
+  name: "BasicDownloadFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "download_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDownloadFlow"
+}

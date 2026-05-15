@@ -1,0 +1,22 @@
+# BasicAnalyzeFlow
+
+main: kit: flow: BasicAnalyzeFlow:
+{
+  entity: "analyze",
+  kind: "basic",
+  name: "BasicAnalyzeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "analyze_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAnalyzeFlow"
+}

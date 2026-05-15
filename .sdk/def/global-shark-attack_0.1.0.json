@@ -1,0 +1,549 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Global Shark Attack API",
+    "description": "The Global Shark Attack File (GSAF) API offers access to a comprehensive dataset of human-shark interactions, including detailed incident reports categorized by type, such as unprovoked, provoked, boat-related, war-related, and questionable incidents. Users can explore bite patterns, species identification, and circumstances surrounding shark encounters, providing valuable insights for researchers, enthusiasts, and conservationists interested in understanding shark behavior and the rarity of shark attacks.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "OpenDataSoft",
+      "url": "https://public.opendatasoft.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://public.opendatasoft.com/api/records/1.0",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/search": {
+      "get": {
+        "summary": "Search shark attack records",
+        "description": "Search and retrieve shark attack incident records with filtering, sorting, and pagination capabilities",
+        "operationId": "searchRecords",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "description": "Dataset identifier",
+            "schema": {
+              "type": "string",
+              "default": "global-shark-attack"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Full-text search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rows",
+            "in": "query",
+            "description": "Number of records to return (max 100)",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Index of the first record to return (for pagination)",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Field name to sort by (prefix with - for descending order)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine.type",
+            "in": "query",
+            "description": "Filter by incident type (unprovoked, provoked, boat, war, questionable)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Unprovoked",
+                "Provoked",
+                "Boat",
+                "War",
+                "Questionable"
+              ]
+            }
+          },
+          {
+            "name": "refine.country",
+            "in": "query",
+            "description": "Filter by country where incident occurred",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine.species",
+            "in": "query",
+            "description": "Filter by shark species",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine.activity",
+            "in": "query",
+            "description": "Filter by victim activity at time of incident",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facet",
+            "in": "query",
+            "description": "Field names to facet on (can be repeated)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with shark attack records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nhits": {
+                      "type": "integer",
+                      "description": "Total number of records matching the query"
+                    },
+                    "parameters": {
+                      "type": "object",
+                      "description": "Echo of the request parameters"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SharkAttackRecord"
+                      }
+                    },
+                    "facet_groups": {
+                      "type": "array",
+                      "description": "Facet aggregations if requested",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dataset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/download": {
+      "get": {
+        "summary": "Download shark attack dataset",
+        "description": "Download the complete shark attack dataset in various formats (CSV, JSON, Excel)",
+        "operationId": "downloadDataset",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "description": "Dataset identifier",
+            "schema": {
+              "type": "string",
+              "default": "global-shark-attack"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Download format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "xls",
+                "geojson"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "refine.type",
+            "in": "query",
+            "description": "Filter by incident type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine.country",
+            "in": "query",
+            "description": "Filter by country",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful download",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SharkAttackRecord"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/vnd.ms-excel": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analyze": {
+      "get": {
+        "summary": "Analyze shark attack data",
+        "description": "Perform statistical analysis and aggregations on shark attack data",
+        "operationId": "analyzeData",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "description": "Dataset identifier",
+            "schema": {
+              "type": "string",
+              "default": "global-shark-attack"
+            }
+          },
+          {
+            "name": "x",
+            "in": "query",
+            "description": "Field name for X-axis aggregation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "y",
+            "in": "query",
+            "description": "Field name for Y-axis aggregation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "func",
+            "in": "query",
+            "description": "Aggregation function to apply",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "COUNT",
+                "AVG",
+                "SUM",
+                "MIN",
+                "MAX"
+              ],
+              "default": "COUNT"
+            }
+          },
+          {
+            "name": "refine.type",
+            "in": "query",
+            "description": "Filter by incident type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine.country",
+            "in": "query",
+            "description": "Filter by country",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "string",
+                        "description": "X-axis value"
+                      },
+                      "y": {
+                        "type": "number",
+                        "description": "Aggregated Y-axis value"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SharkAttackRecord": {
+        "type": "object",
+        "properties": {
+          "datasetid": {
+            "type": "string",
+            "description": "Dataset identifier"
+          },
+          "recordid": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "fields": {
+            "type": "object",
+            "properties": {
+              "case_number": {
+                "type": "string",
+                "description": "Unique case number for the incident"
+              },
+              "date": {
+                "type": "string",
+                "format": "date",
+                "description": "Date of the incident"
+              },
+              "year": {
+                "type": "integer",
+                "description": "Year of the incident"
+              },
+              "type": {
+                "type": "string",
+                "description": "Type of incident",
+                "enum": [
+                  "Unprovoked",
+                  "Provoked",
+                  "Boat",
+                  "War",
+                  "Questionable"
+                ]
+              },
+              "country": {
+                "type": "string",
+                "description": "Country where incident occurred"
+              },
+              "area": {
+                "type": "string",
+                "description": "Specific area or region within country"
+              },
+              "location": {
+                "type": "string",
+                "description": "Detailed location description"
+              },
+              "activity": {
+                "type": "string",
+                "description": "Activity victim was engaged in at time of incident"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the victim"
+              },
+              "sex": {
+                "type": "string",
+                "description": "Sex of the victim",
+                "enum": [
+                  "M",
+                  "F"
+                ]
+              },
+              "age": {
+                "type": "string",
+                "description": "Age of the victim"
+              },
+              "injury": {
+                "type": "string",
+                "description": "Description of injuries sustained"
+              },
+              "fatal": {
+                "type": "string",
+                "description": "Whether the incident was fatal",
+                "enum": [
+                  "Y",
+                  "N",
+                  "UNKNOWN"
+                ]
+              },
+              "time": {
+                "type": "string",
+                "description": "Time of day the incident occurred"
+              },
+              "species": {
+                "type": "string",
+                "description": "Species of shark involved"
+              },
+              "investigator_or_source": {
+                "type": "string",
+                "description": "Source of the incident report"
+              },
+              "pdf": {
+                "type": "string",
+                "description": "URL to PDF report if available"
+              },
+              "href_formula": {
+                "type": "string",
+                "description": "Link to additional information"
+              },
+              "href": {
+                "type": "string",
+                "description": "Reference link"
+              },
+              "case_number_1": {
+                "type": "string",
+                "description": "Alternative case number"
+              },
+              "case_number_2": {
+                "type": "string",
+                "description": "Secondary case number"
+              },
+              "original_order": {
+                "type": "integer",
+                "description": "Original ordering in dataset"
+              },
+              "geopoint": {
+                "type": "array",
+                "description": "Geographic coordinates [latitude, longitude]",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          },
+          "geometry": {
+            "type": "object",
+            "description": "GeoJSON geometry object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Point"
+                ]
+              },
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          },
+          "record_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of record creation or update"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "error_code": {
+            "type": "string",
+            "description": "Error code"
+          }
+        }
+      }
+    }
+  }
+}

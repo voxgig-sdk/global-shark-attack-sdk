@@ -1,0 +1,99 @@
+# Entity: download
+
+main: kit: entity: download: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "datasetid"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "field"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "geometry"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "record_timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "recordid"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "download"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "global-shark-attack"
+                kind: "query"
+                name: "dataset"
+                orig: "dataset"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "refine_country"
+                orig: "refine_country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "refine_type"
+                orig: "refine_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/download"
+          parts: [
+            "download"
+          ]
+          select: {
+            exist: [
+              "dataset"
+              "format"
+              "refine_country"
+              "refine_type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

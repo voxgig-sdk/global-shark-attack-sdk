@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "download": {
+      "DOWNLOAD00": {
+        "datasetid": "s32",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "s35",
+        "recordid": "s36"
+      },
+      "DOWNLOAD01": {
+        "datasetid": "s64",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "s67",
+        "recordid": "s68"
+      },
+      "DOWNLOAD02": {
+        "datasetid": "s96",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "s99",
+        "recordid": "s9a"
+      }
+    }
+  },
+  "new": {
+    "download": {
+      "download_ref01": {
+        "datasetid": "sc8",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "scb",
+        "recordid": "scc"
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+# Entity: analyze
+
+main: kit: entity: analyze: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "x"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "y"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "analyze"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "global-shark-attack"
+                kind: "query"
+                name: "dataset"
+                orig: "dataset"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "COUNT"
+                kind: "query"
+                name: "func"
+                orig: "func"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "refine_country"
+                orig: "refine_country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "refine_type"
+                orig: "refine_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "x"
+                orig: "x"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "y"
+                orig: "y"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/analyze"
+          parts: [
+            "analyze"
+          ]
+          select: {
+            exist: [
+              "dataset"
+              "func"
+              "refine_country"
+              "refine_type"
+              "x"
+              "y"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
