@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/global-shark-attack-sdk/core"
+	"github.com/voxgig-sdk/global-shark-attack-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

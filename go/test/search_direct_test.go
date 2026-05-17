@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/global-shark-attack-sdk"
-	"github.com/voxgig-sdk/global-shark-attack-sdk/core"
+	sdk "github.com/voxgig-sdk/global-shark-attack-sdk/go"
+	"github.com/voxgig-sdk/global-shark-attack-sdk/go/core"
 )
 
 func TestSearchDirect(t *testing.T) {

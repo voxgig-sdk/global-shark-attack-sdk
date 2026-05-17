@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/global-shark-attack-sdk"
+	sdk "github.com/voxgig-sdk/global-shark-attack-sdk/go"
 )
 
 func TestExists(t *testing.T) {

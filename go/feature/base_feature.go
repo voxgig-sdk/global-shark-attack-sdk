@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/global-shark-attack-sdk/core"
+	"github.com/voxgig-sdk/global-shark-attack-sdk/go/core"
 )
 
 type BaseFeature struct {
