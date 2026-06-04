@@ -92,7 +92,6 @@ def _download_basic_setup(extra):
         "GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID": idmap,
         "GLOBALSHARKATTACK_TEST_LIVE": "FALSE",
         "GLOBALSHARKATTACK_TEST_EXPLAIN": "FALSE",
-        "GLOBALSHARKATTACK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ def _download_basic_setup(extra):
     if env.get("GLOBALSHARKATTACK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("GLOBALSHARKATTACK_APIKEY"),
             },
             extra or {},
         ])

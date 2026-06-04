@@ -86,7 +86,6 @@ function download_basic_setup($extra)
         "GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID" => $idmap,
         "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
         "GLOBALSHARKATTACK_TEST_EXPLAIN" => "FALSE",
-        "GLOBALSHARKATTACK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function download_basic_setup($extra)
     if ($env["GLOBALSHARKATTACK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GLOBALSHARKATTACK_APIKEY"],
             ],
             $extra ?? [],
         ]);

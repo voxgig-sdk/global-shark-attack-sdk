@@ -92,7 +92,6 @@ function download_basic_setup(extra)
     ["GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID"] = idmap,
     ["GLOBALSHARKATTACK_TEST_LIVE"] = "FALSE",
     ["GLOBALSHARKATTACK_TEST_EXPLAIN"] = "FALSE",
-    ["GLOBALSHARKATTACK_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function download_basic_setup(extra)
   if env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["GLOBALSHARKATTACK_APIKEY"],
       },
       extra or {},
     })

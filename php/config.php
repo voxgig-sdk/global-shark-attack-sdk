@@ -20,9 +20,6 @@ class GlobalSharkAttackConfig
             ],
             "options" => [
                 "base" => "https://public.opendatasoft.com/api/records/1.0",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

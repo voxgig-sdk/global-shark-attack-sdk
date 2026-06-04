@@ -68,14 +68,12 @@ function search_direct_setup($mockres)
     $env = Runner::env_override([
         "GLOBALSHARKATTACK_TEST_SEARCH_ENTID" => [],
         "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
-        "GLOBALSHARKATTACK_APIKEY" => "NONE",
     ]);
 
     $live = $env["GLOBALSHARKATTACK_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["GLOBALSHARKATTACK_APIKEY"],
         ];
         $client = new GlobalSharkAttackSDK($merged_opts);
         return [
