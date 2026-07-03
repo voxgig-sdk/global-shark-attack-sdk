@@ -10,13 +10,13 @@ The Ruby SDK for the GlobalSharkAttack API — an entity-oriented client using i
 
 ## Install
 ```bash
-gem install global-shark-attack-sdk
+gem install voxgig-sdk-global-shark-attack
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "global-shark-attack-sdk"
+gem "voxgig-sdk-global-shark-attack"
 ```
 
 Then run:

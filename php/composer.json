@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/global-shark-attack",
-  "description": "GlobalSharkAttack SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Global Shark Attack public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "global-shark-attack"],
+  "homepage": "https://github.com/voxgig-sdk/global-shark-attack-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/global-shark-attack-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/global-shark-attack-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

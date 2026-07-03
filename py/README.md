@@ -10,7 +10,7 @@ The Python SDK for the GlobalSharkAttack API — an entity-oriented client follo
 
 ## Install
 ```bash
-pip install global-shark-attack-sdk
+pip install voxgig-sdk-global-shark-attack
 ```
 
 Or install from source:

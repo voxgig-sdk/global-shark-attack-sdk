@@ -10,7 +10,7 @@ The PHP SDK for the GlobalSharkAttack API — an entity-oriented client using PH
 
 ## Install
 ```bash
-composer require voxgig/global-shark-attack-sdk
+composer require voxgig-sdk/global-shark-attack
 ```
 
 

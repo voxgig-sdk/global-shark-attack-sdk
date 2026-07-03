@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/global-shark-attack",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Global Shark Attack public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "global-shark-attack"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/global-shark-attack-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/global-shark-attack-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/global-shark-attack-sdk/issues"
+  },
   "main": "dist/GlobalSharkAttackSDK.js",
   "type": "commonjs",
   "types": "dist/GlobalSharkAttackSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "GlobalSharkAttack",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

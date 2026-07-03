@@ -10,7 +10,7 @@ The TypeScript SDK for the GlobalSharkAttack API — a type-safe, entity-oriente
 
 ## Install
 ```bash
-npm install global-shark-attack
+npm install @voxgig-sdk/global-shark-attack
 ```
 ## Tutorial: your first API call
 

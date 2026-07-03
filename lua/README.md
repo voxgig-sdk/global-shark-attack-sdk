@@ -10,7 +10,7 @@ The Lua SDK for the GlobalSharkAttack API — an entity-oriented client using Lu
 
 ## Install
 ```bash
-luarocks install global-shark-attack-sdk
+luarocks install voxgig-sdk-global-shark-attack
 ```
 
 If the module is not yet published, add the source directory to
