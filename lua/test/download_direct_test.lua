@@ -63,12 +63,14 @@ function download_direct_setup(mockres)
   local env = runner.env_override({
     ["GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID"] = {},
     ["GLOBALSHARKATTACK_TEST_LIVE"] = "FALSE",
+    ["GLOBALSHARKATTACK_APIKEY"] = "NONE",
   })
 
   local live = env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["GLOBALSHARKATTACK_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

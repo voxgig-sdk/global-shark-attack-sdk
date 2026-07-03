@@ -61,12 +61,14 @@ def _download_direct_setup(mockres):
     env = runner.env_override({
         "GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID": {},
         "GLOBALSHARKATTACK_TEST_LIVE": "FALSE",
+        "GLOBALSHARKATTACK_APIKEY": "NONE",
     })
 
     live = env.get("GLOBALSHARKATTACK_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("GLOBALSHARKATTACK_APIKEY"),
         }
         client = GlobalSharkAttackSDK(merged_opts)
         return {

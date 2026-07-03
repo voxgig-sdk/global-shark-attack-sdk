@@ -17,29 +17,7 @@ main: {
       ]
       title: "Global Shark Attack API"
       version: "1.0.0"
-      tagline: "Query the Global Shark Attack File (GSAF) of historical human-shark interactions via OpenDataSoft"
-      homepage: "https://public.opendatasoft.com/explore/dataset/global-shark-attack/"
-      docs_url: "https://help.opendatasoft.com/apis/ods-search-v1/"
-      license_short: "OpenDataSoft hosted dataset; check dataset page for licence and attribution to the Global Shark Attack File (GSAF)."
-      license_md: `- Data is sourced from the Global Shark Attack File (GSAF), a long-running compilation of shark interaction reports.
-- Served via the OpenDataSoft public platform; usage is subject to OpenDataSoft's terms of service.
-- No explicit reuse licence is published on the catalogue entry — attribute GSAF and the OpenDataSoft host when redistributing.
-- Treat the data as research material: entries are historical reports of varying provenance, not authoritative incident records.`
-      about_md: `The Global Shark Attack API exposes the [Global Shark Attack File](https://www.sharkattackfile.net/) (GSAF) dataset through the public [OpenDataSoft](https://public.opendatasoft.com/) catalogue. GSAF is a long-running, volunteer-maintained record of documented human-shark interactions worldwide, with entries categorised as unprovoked, provoked, boat-related, sea-disaster, or questionable.
-
-What you get from the API:
-
-- Per-incident records describing date, location, country, activity, victim details, injury description, species (where known), and incident type.
-- Search and filter via OpenDataSoft's Search API v1 (\`/api/records/1.0/search/\`), including text queries, faceted refinement, and date filters.
-- Dataset metadata and the list of supported export formats for bulk download.
-
-The API is served over HTTPS from \`public.opendatasoft.com\` and is CORS-enabled, so it can be called directly from browsers. No API key is required for the public catalogue, though OpenDataSoft applies per-IP rate limits — heavy or automated use should be paced accordingly. Records reflect historical reports of varying provenance and should be treated as research data rather than an authoritative incident registry.`
-      entity_desc: {
-        analyze: "Retrieve dataset metadata, facets, and aggregate views describing the global-shark-attack dataset."
-        download: "Export the dataset in bulk through OpenDataSoft's download endpoint (e.g. `GET /api/records/1.0/download/`) in formats such as CSV, JSON, or GeoJSON."
-        search: "Query individual shark-interaction records with full-text search, facet refinement, and date filters via `GET /api/records/1.0/search/`."
-      }
-      auth: false
     }
   }
 }
+

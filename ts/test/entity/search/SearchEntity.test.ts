@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'GLOBAL_SHARK_ATTACK_TEST_SEARCH_ENTID': idmap,
     'GLOBAL_SHARK_ATTACK_TEST_LIVE': 'FALSE',
     'GLOBAL_SHARK_ATTACK_TEST_EXPLAIN': 'FALSE',
+    'GLOBAL_SHARK_ATTACK_APIKEY': 'NONE',
   })
 
   idmap = env['GLOBAL_SHARK_ATTACK_TEST_SEARCH_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new GlobalSharkAttackSDK(merge([
       {
+        apikey: env.GLOBAL_SHARK_ATTACK_APIKEY,
       },
       extra
     ]))

@@ -1,20 +1,8 @@
 # GlobalSharkAttack SDK
 
-Query the Global Shark Attack File (GSAF) of historical human-shark interactions via OpenDataSoft
+Global Shark Attack API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Global Shark Attack API
-
-The Global Shark Attack API exposes the [Global Shark Attack File](https://www.sharkattackfile.net/) (GSAF) dataset through the public [OpenDataSoft](https://public.opendatasoft.com/) catalogue. GSAF is a long-running, volunteer-maintained record of documented human-shark interactions worldwide, with entries categorised as unprovoked, provoked, boat-related, sea-disaster, or questionable.
-
-What you get from the API:
-
-- Per-incident records describing date, location, country, activity, victim details, injury description, species (where known), and incident type.
-- Search and filter via OpenDataSoft's Search API v1 (`/api/records/1.0/search/`), including text queries, faceted refinement, and date filters.
-- Dataset metadata and the list of supported export formats for bulk download.
-
-The API is served over HTTPS from `public.opendatasoft.com` and is CORS-enabled, so it can be called directly from browsers. No API key is required for the public catalogue, though OpenDataSoft applies per-IP rate limits — heavy or automated use should be paced accordingly. Records reflect historical reports of varying provenance and should be treated as research data rather than an authoritative incident registry.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install global-shark-attack-sdk
 luarocks install global-shark-attack-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { GlobalSharkAttackSDK } from 'global-shark-attack'
 
-const client = new GlobalSharkAttackSDK({})
+const client = new GlobalSharkAttackSDK({
+  apikey: process.env.GLOBAL-SHARK-ATTACK_APIKEY,
+})
 
 // List all analyzes
 const analyzes = await client.Analyze().list()
+console.log(analyzes.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Analyze** | Retrieve dataset metadata, facets, and aggregate views describing the global-shark-attack dataset. | `/analyze` |
-| **Download** | Export the dataset in bulk through OpenDataSoft's download endpoint (e.g. `GET /api/records/1.0/download/`) in formats such as CSV, JSON, or GeoJSON. | `/download` |
-| **Search** | Query individual shark-interaction records with full-text search, facet refinement, and date filters via `GET /api/records/1.0/search/`. | `/search` |
+| **Analyze** |  | `/analyze` |
+| **Download** |  | `/download` |
+| **Search** |  | `/search` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from globalsharkattack_sdk import GlobalSharkAttackSDK
 
-client = GlobalSharkAttackSDK({})
+client = GlobalSharkAttackSDK({
+    "apikey": os.environ.get("GLOBAL-SHARK-ATTACK_APIKEY"),
+})
 
 # List all analyzes
-analyzes, err = client.Analyze(None).list(None, None)
+analyzes, err = client.Analyze().list()
+print(analyzes)
 ```
 
 ### PHP
@@ -126,10 +120,13 @@ analyzes, err = client.Analyze(None).list(None, None)
 <?php
 require_once 'globalsharkattack_sdk.php';
 
-$client = new GlobalSharkAttackSDK([]);
+$client = new GlobalSharkAttackSDK([
+    "apikey" => getenv("GLOBAL-SHARK-ATTACK_APIKEY"),
+]);
 
 // List all analyzes
-[$analyzes, $err] = $client->Analyze(null)->list(null, null);
+[$analyzes, $err] = $client->Analyze()->list();
+print_r($analyzes);
 ```
 
 ### Golang
@@ -137,10 +134,13 @@ $client = new GlobalSharkAttackSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/global-shark-attack-sdk/go"
 
-client := sdk.NewGlobalSharkAttackSDK(map[string]any{})
+client := sdk.NewGlobalSharkAttackSDK(map[string]any{
+    "apikey": os.Getenv("GLOBAL-SHARK-ATTACK_APIKEY"),
+})
 
 // List all analyzes
 analyzes, err := client.Analyze(nil).List(nil, nil)
+fmt.Println(analyzes)
 ```
 
 ### Ruby
@@ -148,10 +148,13 @@ analyzes, err := client.Analyze(nil).List(nil, nil)
 ```ruby
 require_relative "GlobalSharkAttack_sdk"
 
-client = GlobalSharkAttackSDK.new({})
+client = GlobalSharkAttackSDK.new({
+  "apikey" => ENV["GLOBAL-SHARK-ATTACK_APIKEY"],
+})
 
 # List all analyzes
-analyzes, err = client.Analyze(nil).list(nil, nil)
+analyzes, err = client.Analyze().list
+puts analyzes
 ```
 
 ### Lua
@@ -159,10 +162,13 @@ analyzes, err = client.Analyze(nil).list(nil, nil)
 ```lua
 local sdk = require("global-shark-attack_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("GLOBAL-SHARK-ATTACK_APIKEY"),
+})
 
 -- List all analyzes
-local analyzes, err = client:Analyze(nil):list(nil, nil)
+local analyzes, err = client:Analyze():list()
+print(analyzes)
 ```
 
 ## Unit testing in offline mode
@@ -181,25 +187,21 @@ const result = await client.Analyze().load({ id: 'test01' })
 ### Python
 
 ```python
-client = GlobalSharkAttackSDK.test(None, None)
-result, err = client.Analyze(None).load(
-    {"id": "test01"}, None
-)
+client = GlobalSharkAttackSDK.test()
+result, err = client.Analyze().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = GlobalSharkAttackSDK::test(null, null);
-[$result, $err] = $client->Analyze(null)->load(
-    ["id" => "test01"], null
-);
+$client = GlobalSharkAttackSDK::test();
+[$result, $err] = $client->Analyze()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Analyze(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -208,19 +210,15 @@ result, err := client.Analyze(nil).Load(
 ### Ruby
 
 ```ruby
-client = GlobalSharkAttackSDK.test(nil, nil)
-result, err = client.Analyze(nil).load(
-  { "id" => "test01" }, nil
-)
+client = GlobalSharkAttackSDK.test
+result, err = client.Analyze().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Analyze(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Analyze():load({ id = "test01" })
 ```
 
 ## How it works
@@ -324,16 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Global Shark Attack API
-
-- Upstream: [https://public.opendatasoft.com/explore/dataset/global-shark-attack/](https://public.opendatasoft.com/explore/dataset/global-shark-attack/)
-- API docs: [https://help.opendatasoft.com/apis/ods-search-v1/](https://help.opendatasoft.com/apis/ods-search-v1/)
-
-- Data is sourced from the Global Shark Attack File (GSAF), a long-running compilation of shark interaction reports.
-- Served via the OpenDataSoft public platform; usage is subject to OpenDataSoft's terms of service.
-- No explicit reuse licence is published on the catalogue entry — attribute GSAF and the OpenDataSoft host when redistributing.
-- Treat the data as research material: entries are historical reports of varying provenance, not authoritative incident records.
 
 ---
 

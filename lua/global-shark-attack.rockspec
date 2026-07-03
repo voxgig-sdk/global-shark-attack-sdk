@@ -1,7 +1,11 @@
 package = "voxgig-sdk-global-shark-attack"
-version = "0.0-1"
+version = "0.0.1-1"
 source = {
-  url = "git://github.com/voxgig-sdk/global-shark-attack-sdk.git"
+  -- git+https (GitHub dropped git:// in 2022); pin the install to the release
+  -- tag pushed by `make publish`, and point at the lua/ subdir of the monorepo.
+  url = "git+https://github.com/voxgig-sdk/global-shark-attack-sdk.git",
+  tag = "lua/v0.0.1",
+  dir = "global-shark-attack-sdk/lua"
 }
 description = {
   summary = "GlobalSharkAttack SDK for Lua",

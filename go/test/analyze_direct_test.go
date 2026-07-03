@@ -93,12 +93,14 @@ func analyzeDirectSetup(mockres any) *analyzeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"GLOBALSHARKATTACK_TEST_ANALYZE_ENTID": map[string]any{},
 		"GLOBALSHARKATTACK_TEST_LIVE":    "FALSE",
+		"GLOBALSHARKATTACK_APIKEY":       "NONE",
 	})
 
 	live := env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["GLOBALSHARKATTACK_APIKEY"],
 		}
 		client := sdk.NewGlobalSharkAttackSDK(mergedOpts)
 

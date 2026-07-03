@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://public.opendatasoft.com/api/records/1.0',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -61,77 +65,79 @@ class Config {
     "analyze": {
       "fields": [
         {
+          "active": true,
           "name": "x",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "y",
           "req": false,
           "type": "`$NUMBER`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "analyze",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": "global-shark-attack",
                     "kind": "query",
                     "name": "dataset",
                     "orig": "dataset",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": "COUNT",
                     "kind": "query",
                     "name": "func",
                     "orig": "func",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_country",
                     "orig": "refine_country",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_type",
                     "orig": "refine_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "x",
                     "orig": "x",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "y",
                     "orig": "y",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -154,11 +160,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },
@@ -169,82 +173,84 @@ class Config {
     "download": {
       "fields": [
         {
+          "active": true,
           "name": "datasetid",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "field",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "geometry",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "record_timestamp",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "recordid",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 4
         }
       ],
       "name": "download",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": "global-shark-attack",
                     "kind": "query",
                     "name": "dataset",
                     "orig": "dataset",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": "json",
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_country",
                     "orig": "refine_country",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_type",
                     "orig": "refine_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -265,11 +271,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },
@@ -280,131 +284,133 @@ class Config {
     "search": {
       "fields": [
         {
+          "active": true,
           "name": "datasetid",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "field",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "geometry",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "record_timestamp",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "recordid",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 4
         }
       ],
       "name": "search",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": "global-shark-attack",
                     "kind": "query",
                     "name": "dataset",
                     "orig": "dataset",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "facet",
                     "orig": "facet",
                     "reqd": false,
-                    "type": "`$ARRAY`",
-                    "active": true
+                    "type": "`$ARRAY`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "q",
                     "orig": "q",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_activity",
                     "orig": "refine_activity",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_country",
                     "orig": "refine_country",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_species",
                     "orig": "refine_species",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "refine_type",
                     "orig": "refine_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 10,
                     "kind": "query",
                     "name": "row",
                     "orig": "row",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -431,11 +437,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },
