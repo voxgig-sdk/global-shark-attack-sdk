@@ -119,7 +119,6 @@ func searchBasicSetup(extra map[string]any) *entityTestSetup {
 		"GLOBALSHARKATTACK_TEST_SEARCH_ENTID": idmap,
 		"GLOBALSHARKATTACK_TEST_LIVE":      "FALSE",
 		"GLOBALSHARKATTACK_TEST_EXPLAIN":   "FALSE",
-		"GLOBALSHARKATTACK_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["GLOBALSHARKATTACK_TEST_SEARCH_ENTID"])
@@ -130,7 +129,6 @@ func searchBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["GLOBALSHARKATTACK_APIKEY"],
 			},
 			extra,
 		})

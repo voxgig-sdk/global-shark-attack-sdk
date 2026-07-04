@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Analyze,
+  AnalyzeListMatch,
+} from '../GlobalSharkAttackTypes'
 
 // TODO: needs Entity superclass
-class AnalyzeEntity extends GlobalSharkAttackEntityBase {
+class AnalyzeEntity extends GlobalSharkAttackEntityBase<Analyze> {
 
   constructor(client: GlobalSharkAttackSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class AnalyzeEntity extends GlobalSharkAttackEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AnalyzeListMatch, ctrl?: Control): Promise<Analyze[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class AnalyzeEntity extends GlobalSharkAttackEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Analyze[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

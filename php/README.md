@@ -9,9 +9,10 @@ The PHP SDK for the GlobalSharkAttack API — an entity-oriented client using PH
 
 
 ## Install
-```bash
-composer require voxgig-sdk/global-shark-attack
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/global-shark-attack-sdk/releases](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,22 +26,22 @@ loading a specific record.
 <?php
 require_once 'globalsharkattack_sdk.php';
 
-$client = new GlobalSharkAttackSDK([
-    "apikey" => getenv("GLOBAL-SHARK-ATTACK_APIKEY"),
-]);
+$client = new GlobalSharkAttackSDK();
 ```
 
 ### 2. List analyzes
 
 ```php
-[$result, $err] = $client->Analyze()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->analyze()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +53,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +91,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = GlobalSharkAttackSDK::test();
 
-[$result, $err] = $client->GlobalSharkAttack()->load(["id" => "test01"]);
+$result = $client->analyze()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -121,8 +125,7 @@ $client = new GlobalSharkAttackSDK([
 Create a `.env.local` file at the project root:
 
 ```
-GLOBAL-SHARK-ATTACK_TEST_LIVE=TRUE
-GLOBAL-SHARK-ATTACK_APIKEY=<your-key>
+GLOBAL_SHARK_ATTACK_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -145,7 +148,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -193,8 +195,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -253,7 +259,7 @@ API path: `/search`
 
 ### Analyze
 
-Create an instance: `const analyze = client.Analyze()`
+Create an instance: `const analyze = client.analyze`
 
 #### Operations
 
@@ -271,13 +277,13 @@ Create an instance: `const analyze = client.Analyze()`
 #### Example: List
 
 ```ts
-const analyzes = await client.Analyze().list()
+const analyzes = await client.analyze.list()
 ```
 
 
 ### Download
 
-Create an instance: `const download = client.Download()`
+Create an instance: `const download = client.download`
 
 #### Operations
 
@@ -298,13 +304,13 @@ Create an instance: `const download = client.Download()`
 #### Example: List
 
 ```ts
-const downloads = await client.Download().list()
+const downloads = await client.download.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -325,7 +331,7 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
@@ -400,11 +406,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$analyze = $client->analyze();
+$analyze->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $analyze->dataGet() now returns the loaded analyze data
+// $analyze->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

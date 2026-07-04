@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:analyze():list() / client:analyze():load({ id = ... })
+function GlobalSharkAttackSDK:analyze(data)
+  local EntityMod = require("entity.analyze_entity")
+  if data == nil then
+    if self._analyze == nil then
+      self._analyze = EntityMod.new(self, nil)
+    end
+    return self._analyze
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:analyze() instead.
 function GlobalSharkAttackSDK:Analyze(data)
   local EntityMod = require("entity.analyze_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:download():list() / client:download():load({ id = ... })
+function GlobalSharkAttackSDK:download(data)
+  local EntityMod = require("entity.download_entity")
+  if data == nil then
+    if self._download == nil then
+      self._download = EntityMod.new(self, nil)
+    end
+    return self._download
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:download() instead.
 function GlobalSharkAttackSDK:Download(data)
   local EntityMod = require("entity.download_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function GlobalSharkAttackSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function GlobalSharkAttackSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)

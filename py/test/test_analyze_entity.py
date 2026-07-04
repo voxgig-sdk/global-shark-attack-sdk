@@ -50,8 +50,7 @@ class TestAnalyzeEntity:
         analyze_ref01_ent = client.Analyze(None)
         analyze_ref01_match = {}
 
-        analyze_ref01_list_result, err = analyze_ref01_ent.list(analyze_ref01_match, None)
-        assert err is None
+        analyze_ref01_list_result = analyze_ref01_ent.list(analyze_ref01_match, None)
         assert isinstance(analyze_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _analyze_basic_setup(extra):
         "GLOBALSHARKATTACK_TEST_ANALYZE_ENTID": idmap,
         "GLOBALSHARKATTACK_TEST_LIVE": "FALSE",
         "GLOBALSHARKATTACK_TEST_EXPLAIN": "FALSE",
-        "GLOBALSHARKATTACK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _analyze_basic_setup(extra):
     if env.get("GLOBALSHARKATTACK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("GLOBALSHARKATTACK_APIKEY"),
             },
             extra or {},
         ])

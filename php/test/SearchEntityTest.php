@@ -50,8 +50,7 @@ class SearchEntityTest extends TestCase
         $search_ref01_ent = $client->Search(null);
         $search_ref01_match = [];
 
-        [$search_ref01_list_result, $err] = $search_ref01_ent->list($search_ref01_match, null);
-        $this->assertNull($err);
+        $search_ref01_list_result = $search_ref01_ent->list($search_ref01_match, null);
         $this->assertIsArray($search_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function search_basic_setup($extra)
         "GLOBALSHARKATTACK_TEST_SEARCH_ENTID" => $idmap,
         "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
         "GLOBALSHARKATTACK_TEST_EXPLAIN" => "FALSE",
-        "GLOBALSHARKATTACK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function search_basic_setup($extra)
     if ($env["GLOBALSHARKATTACK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GLOBALSHARKATTACK_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AnalyzeListMatch
+---@param ctrl? table
+---@return Analyze[]
+---@return string? err
 function AnalyzeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

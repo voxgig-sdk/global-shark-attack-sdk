@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'GLOBALSHARKATTACK_TEST_SEARCH_ENTID': {},
     'GLOBALSHARKATTACK_TEST_LIVE': 'FALSE',
-    'GLOBALSHARKATTACK_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.GLOBALSHARKATTACK_TEST_LIVE
 
   if (live) {
     const client = new GlobalSharkAttackSDK({
-      apikey: env.GLOBALSHARKATTACK_APIKEY,
     })
 
     let idmap: any = env['GLOBALSHARKATTACK_TEST_SEARCH_ENTID']

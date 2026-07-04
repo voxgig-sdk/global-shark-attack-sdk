@@ -50,8 +50,7 @@ class AnalyzeEntityTest extends TestCase
         $analyze_ref01_ent = $client->Analyze(null);
         $analyze_ref01_match = [];
 
-        [$analyze_ref01_list_result, $err] = $analyze_ref01_ent->list($analyze_ref01_match, null);
-        $this->assertNull($err);
+        $analyze_ref01_list_result = $analyze_ref01_ent->list($analyze_ref01_match, null);
         $this->assertIsArray($analyze_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function analyze_basic_setup($extra)
         "GLOBALSHARKATTACK_TEST_ANALYZE_ENTID" => $idmap,
         "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
         "GLOBALSHARKATTACK_TEST_EXPLAIN" => "FALSE",
-        "GLOBALSHARKATTACK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function analyze_basic_setup($extra)
     if ($env["GLOBALSHARKATTACK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["GLOBALSHARKATTACK_APIKEY"],
             ],
             $extra ?? [],
         ]);

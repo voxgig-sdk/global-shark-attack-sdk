@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch DownloadListMatch
+---@param ctrl? table
+---@return Download[]
+---@return string? err
 function DownloadEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

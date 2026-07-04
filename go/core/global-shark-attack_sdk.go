@@ -245,16 +245,25 @@ func (sdk *GlobalSharkAttackSDK) Direct(fetchargs map[string]any) (map[string]an
 }
 
 
+// Analyze returns a Analyze entity bound to this client.
+// Idiomatic usage: client.Analyze(nil).List(nil, nil) or
+// client.Analyze(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GlobalSharkAttackSDK) Analyze(data map[string]any) GlobalSharkAttackEntity {
 	return NewAnalyzeEntityFunc(sdk, data)
 }
 
 
+// Download returns a Download entity bound to this client.
+// Idiomatic usage: client.Download(nil).List(nil, nil) or
+// client.Download(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GlobalSharkAttackSDK) Download(data map[string]any) GlobalSharkAttackEntity {
 	return NewDownloadEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *GlobalSharkAttackSDK) Search(data map[string]any) GlobalSharkAttackEntity {
 	return NewSearchEntityFunc(sdk, data)
 }

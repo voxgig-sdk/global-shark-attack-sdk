@@ -4,6 +4,8 @@ import { AnalyzeEntity } from './entity/AnalyzeEntity'
 import { DownloadEntity } from './entity/DownloadEntity'
 import { SearchEntity } from './entity/SearchEntity'
 
+export type * from './GlobalSharkAttackTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class GlobalSharkAttackSDK {
 
 
 
+  _analyze?: AnalyzeEntity
+
+  // Idiomatic facade: `client.analyze.list()` / `client.analyze.load({ id })`.
+  get analyze(): AnalyzeEntity {
+    return (this._analyze ??= new AnalyzeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.analyze` instead. */
   Analyze(data?: any) {
     const self = this
     return new AnalyzeEntity(self,data)
   }
 
 
+  _download?: DownloadEntity
+
+  // Idiomatic facade: `client.download.list()` / `client.download.load({ id })`.
+  get download(): DownloadEntity {
+    return (this._download ??= new DownloadEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.download` instead. */
   Download(data?: any) {
     const self = this
     return new DownloadEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
