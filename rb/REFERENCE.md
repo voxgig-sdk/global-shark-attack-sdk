@@ -94,7 +94,7 @@ same parameters as `direct()`. Raises on error.
 ## AnalyzeEntity
 
 ```ruby
-analyze = client.analyze
+analyze = client.Analyze
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ analyze = client.analyze
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.analyze.list(nil)
+results = client.Analyze.list(nil)
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## DownloadEntity
 
 ```ruby
-download = client.download
+download = client.Download
 ```
 
 ### Fields
@@ -167,7 +167,7 @@ download = client.download
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.download.list(nil)
+results = client.Download.list(nil)
 ```
 
 ### Common Methods
@@ -203,7 +203,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Fields
@@ -223,7 +223,7 @@ search = client.search
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.search.list(nil)
+results = client.Search.list(nil)
 ```
 
 ### Common Methods

@@ -208,39 +208,21 @@ class GlobalSharkAttackSDK
   end
 
 
-  # Idiomatic facade: client.analyze.list / client.analyze.load({ "id" => ... })
-  def analyze
-    require_relative 'entity/analyze_entity'
-    @analyze ||= AnalyzeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.analyze instead.
+  # Canonical facade: client.Analyze.list / client.Analyze.load({ "id" => ... })
   def Analyze(data = nil)
     require_relative 'entity/analyze_entity'
     AnalyzeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.download.list / client.download.load({ "id" => ... })
-  def download
-    require_relative 'entity/download_entity'
-    @download ||= DownloadEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.download instead.
+  # Canonical facade: client.Download.list / client.Download.load({ "id" => ... })
   def Download(data = nil)
     require_relative 'entity/download_entity'
     DownloadEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)

@@ -133,7 +133,7 @@ Alias for `GlobalSharkAttackSDK.test()`.
 ## AnalyzeEntity
 
 ```ts
-const analyze = client.analyze
+const analyze = client.Analyze()
 ```
 
 ### Fields
@@ -150,7 +150,7 @@ const analyze = client.analyze
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.analyze.list()
+const results = await client.Analyze().list()
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ Return a copy of the entity options.
 ## DownloadEntity
 
 ```ts
-const download = client.download
+const download = client.Download()
 ```
 
 ### Fields
@@ -204,7 +204,7 @@ const download = client.download
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.download.list()
+const results = await client.Download().list()
 ```
 
 ### Common Methods
@@ -238,7 +238,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Fields
@@ -258,7 +258,7 @@ const search = client.search
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.search.list()
+const results = await client.Search().list()
 ```
 
 ### Common Methods

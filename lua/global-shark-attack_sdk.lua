@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:analyze():list() / client:analyze():load({ id = ... })
-function GlobalSharkAttackSDK:analyze(data)
+-- Idiomatic facade: client:Analyze():list() / client:Analyze():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GlobalSharkAttackSDK:Analyze(data)
   local EntityMod = require("entity.analyze_entity")
   if data == nil then
     if self._analyze == nil then
@@ -256,15 +257,10 @@ function GlobalSharkAttackSDK:analyze(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:analyze() instead.
-function GlobalSharkAttackSDK:Analyze(data)
-  local EntityMod = require("entity.analyze_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:download():list() / client:download():load({ id = ... })
-function GlobalSharkAttackSDK:download(data)
+-- Idiomatic facade: client:Download():list() / client:Download():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GlobalSharkAttackSDK:Download(data)
   local EntityMod = require("entity.download_entity")
   if data == nil then
     if self._download == nil then
@@ -275,15 +271,10 @@ function GlobalSharkAttackSDK:download(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:download() instead.
-function GlobalSharkAttackSDK:Download(data)
-  local EntityMod = require("entity.download_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function GlobalSharkAttackSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function GlobalSharkAttackSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -291,12 +282,6 @@ function GlobalSharkAttackSDK:search(data)
     end
     return self._search
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:search() instead.
-function GlobalSharkAttackSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 

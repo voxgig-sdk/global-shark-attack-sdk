@@ -206,42 +206,21 @@ class GlobalSharkAttackSDK {
 
 
 
-  _analyze?: AnalyzeEntity
-
-  // Idiomatic facade: `client.analyze.list()` / `client.analyze.load({ id })`.
-  get analyze(): AnalyzeEntity {
-    return (this._analyze ??= new AnalyzeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.analyze` instead. */
+  // Entity access: `client.Analyze().list()` / `client.Analyze().load({ id })`.
   Analyze(data?: any) {
     const self = this
     return new AnalyzeEntity(self,data)
   }
 
 
-  _download?: DownloadEntity
-
-  // Idiomatic facade: `client.download.list()` / `client.download.load({ id })`.
-  get download(): DownloadEntity {
-    return (this._download ??= new DownloadEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.download` instead. */
+  // Entity access: `client.Download().list()` / `client.Download().load({ id })`.
   Download(data?: any) {
     const self = this
     return new DownloadEntity(self,data)
   }
 
 
-  _search?: SearchEntity
-
-  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
-  get search(): SearchEntity {
-    return (this._search ??= new SearchEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.search` instead. */
+  // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)

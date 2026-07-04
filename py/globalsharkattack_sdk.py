@@ -220,57 +220,27 @@ class GlobalSharkAttackSDK:
         }
 
 
-    @property
-    def analyze(self):
-        """Idiomatic facade: client.analyze.list() / client.analyze.load({"id": ...})."""
-        from entity.analyze_entity import AnalyzeEntity
-        cached = getattr(self, "_analyze", None)
-        if cached is None:
-            cached = AnalyzeEntity(self, None)
-            self._analyze = cached
-        return cached
-
-    def Analyze(self, data=None):
-        # Deprecated: use client.analyze instead.
+    def Analyze(self, data=None) -> "AnalyzeEntity":
+        """Entity factory: client.Analyze().list({}) / client.Analyze().load({"id": ...})."""
         from entity.analyze_entity import AnalyzeEntity
         return AnalyzeEntity(self, data)
 
 
-    @property
-    def download(self):
-        """Idiomatic facade: client.download.list() / client.download.load({"id": ...})."""
-        from entity.download_entity import DownloadEntity
-        cached = getattr(self, "_download", None)
-        if cached is None:
-            cached = DownloadEntity(self, None)
-            self._download = cached
-        return cached
-
-    def Download(self, data=None):
-        # Deprecated: use client.download instead.
+    def Download(self, data=None) -> "DownloadEntity":
+        """Entity factory: client.Download().list({}) / client.Download().load({"id": ...})."""
         from entity.download_entity import DownloadEntity
         return DownloadEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "GlobalSharkAttackSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class GlobalSharkAttackSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.analyze_entity import AnalyzeEntity
+    from entity.download_entity import DownloadEntity
+    from entity.search_entity import SearchEntity

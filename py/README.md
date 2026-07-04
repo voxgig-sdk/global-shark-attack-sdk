@@ -31,14 +31,16 @@ from globalsharkattack_sdk import GlobalSharkAttackSDK
 client = GlobalSharkAttackSDK()
 ```
 
-### 2. List analyzes
+### 2. List analyze records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.analyze.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    analyzes = client.Analyze().list({})
+    for analyze in analyzes:
+        print(analyze)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GlobalSharkAttackSDK.test()
 
-result = client.analyze.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+analyze = client.Analyze().load({"id": "test01"})
+# analyze contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Analyze` | `(data) -> AnalyzeEntity` | Create a Analyze entity instance. |
+| `Analyze` | `(data) -> AnalyzeEntity` | Create an Analyze entity instance. |
 | `Download` | `(data) -> DownloadEntity` | Create a Download entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 
@@ -251,7 +254,7 @@ API path: `/search`
 
 ### Analyze
 
-Create an instance: `const analyze = client.analyze`
+Create an instance: `analyze = client.Analyze()`
 
 #### Operations
 
@@ -268,14 +271,14 @@ Create an instance: `const analyze = client.analyze`
 
 #### Example: List
 
-```ts
-const analyzes = await client.analyze.list()
+```python
+analyzes = client.Analyze().list({})
 ```
 
 
 ### Download
 
-Create an instance: `const download = client.download`
+Create an instance: `download = client.Download()`
 
 #### Operations
 
@@ -295,14 +298,14 @@ Create an instance: `const download = client.download`
 
 #### Example: List
 
-```ts
-const downloads = await client.download.list()
+```python
+downloads = client.Download().list({})
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search()`
 
 #### Operations
 
@@ -322,8 +325,8 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```python
+searchs = client.Search().list({})
 ```
 
 
@@ -397,7 +400,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-analyze = client.analyze
+analyze = client.Analyze()
 analyze.load({"id": "example_id"})
 
 # analyze.data_get() now returns the loaded analyze data

@@ -26,9 +26,11 @@ import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack'
 
 const client = new GlobalSharkAttackSDK()
 
-// List all analyzes
-const analyzes = await client.analyze.list()
-console.log(analyzes.data)
+// List all analyzes (returns Analyze[])
+const analyzes = await client.Analyze().list()
+for (const analyze of analyzes) {
+  console.log(analyze)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,9 +87,10 @@ from globalsharkattack_sdk import GlobalSharkAttackSDK
 
 client = GlobalSharkAttackSDK()
 
-# List all analyzes
-analyzes = client.analyze.list()
-print(analyzes)
+# List all analyzes (returns a list, raises on error)
+analyzes = client.Analyze().list({})
+for analyze in analyzes:
+    print(analyze)
 ```
 
 ### PHP
@@ -98,8 +101,8 @@ require_once 'globalsharkattack_sdk.php';
 
 $client = new GlobalSharkAttackSDK();
 
-// List all analyzes (throws on error)
-$analyzes = $client->analyze()->list();
+// List all analyzes (returns an array; throws on error)
+$analyzes = $client->Analyze()->list();
 print_r($analyzes);
 ```
 
@@ -122,8 +125,8 @@ require_relative "GlobalSharkAttack_sdk"
 
 client = GlobalSharkAttackSDK.new
 
-# List all analyzes
-analyzes = client.analyze.list
+# List all analyzes (returns an Array; raises on error)
+analyzes = client.Analyze.list
 puts analyzes
 ```
 
@@ -135,7 +138,7 @@ local sdk = require("global-shark-attack_sdk")
 local client = sdk.new()
 
 -- List all analyzes
-local analyzes, err = client:analyze():list()
+local analyzes, err = client:Analyze():list()
 print(analyzes)
 ```
 
@@ -148,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = GlobalSharkAttackSDK.test()
-const result = await client.analyze.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const analyze = await client.Analyze().load({ id: 'test01' })
+// analyze is a bare Analyze populated with mock data
+console.log(analyze)
 ```
 
 ### Python
 
 ```python
 client = GlobalSharkAttackSDK.test()
-result = client.analyze.load({"id": "test01"})
+analyze = client.Analyze().load({"id": "test01"})
+print(analyze)
 ```
 
 ### PHP
 
 ```php
-$client = GlobalSharkAttackSDK::test();
-$result = $client->analyze()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = GlobalSharkAttackSDK::test([
+    "entity" => ["analyze" => ["test01" => ["id" => "test01"]]],
+]);
+$analyze = $client->Analyze()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -178,15 +186,18 @@ result, err := client.Analyze(nil).Load(
 ### Ruby
 
 ```ruby
-client = GlobalSharkAttackSDK.test
-result = client.analyze.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = GlobalSharkAttackSDK.test({
+  "entity" => { "analyze" => { "test01" => { "id" => "test01" } } },
+})
+analyze = client.Analyze.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:analyze():load({ id = "test01" })
+local result, err = client:Analyze():load({ id = "test01" })
 ```
 
 ## How it works
@@ -234,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

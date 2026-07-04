@@ -29,18 +29,16 @@ require_once 'globalsharkattack_sdk.php';
 $client = new GlobalSharkAttackSDK();
 ```
 
-### 2. List analyzes
+### 2. List analyze records
 
 ```php
 try {
-    $result = $client->analyze()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Analyze records — iterate directly.
+    $analyzes = $client->Analyze()->list();
+    foreach ($analyzes as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = GlobalSharkAttackSDK::test();
+$client = GlobalSharkAttackSDK::test([
+    "entity" => ["analyze" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->analyze()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$analyze = $client->Analyze()->load(["id" => "test01"]);
+print_r($analyze);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Analyze` | `($data): AnalyzeEntity` | Create a Analyze entity instance. |
+| `Analyze` | `($data): AnalyzeEntity` | Create an Analyze entity instance. |
 | `Download` | `($data): DownloadEntity` | Create a Download entity instance. |
 | `Search` | `($data): SearchEntity` | Create a Search entity instance. |
 
@@ -259,7 +261,7 @@ API path: `/search`
 
 ### Analyze
 
-Create an instance: `const analyze = client.analyze`
+Create an instance: `$analyze = $client->Analyze();`
 
 #### Operations
 
@@ -276,14 +278,15 @@ Create an instance: `const analyze = client.analyze`
 
 #### Example: List
 
-```ts
-const analyzes = await client.analyze.list()
+```php
+// list() returns an array of Analyze records (throws on error).
+$analyzes = $client->Analyze()->list();
 ```
 
 
 ### Download
 
-Create an instance: `const download = client.download`
+Create an instance: `$download = $client->Download();`
 
 #### Operations
 
@@ -303,14 +306,15 @@ Create an instance: `const download = client.download`
 
 #### Example: List
 
-```ts
-const downloads = await client.download.list()
+```php
+// list() returns an array of Download records (throws on error).
+$downloads = $client->Download()->list();
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -330,8 +334,9 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```php
+// list() returns an array of Search records (throws on error).
+$searchs = $client->Search()->list();
 ```
 
 
@@ -406,7 +411,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$analyze = $client->analyze();
+$analyze = $client->Analyze();
 $analyze->load(["id" => "example_id"]);
 
 // $analyze->dataGet() now returns the loaded analyze data

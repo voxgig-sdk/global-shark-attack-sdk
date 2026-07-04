@@ -28,16 +28,14 @@ require_relative "GlobalSharkAttack_sdk"
 client = GlobalSharkAttackSDK.new
 ```
 
-### 2. List analyzes
+### 2. List analyze records
 
 ```ruby
 begin
-  result = client.analyze.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Analyze records — iterate directly.
+  analyzes = client.Analyze.list
+  analyzes.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = GlobalSharkAttackSDK.test
+client = GlobalSharkAttackSDK.test({
+  "entity" => { "analyze" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.analyze.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+analyze = client.Analyze.load({ "id" => "test01" })
+puts analyze
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Analyze` | `(data) -> AnalyzeEntity` | Create a Analyze entity instance. |
+| `Analyze` | `(data) -> AnalyzeEntity` | Create an Analyze entity instance. |
 | `Download` | `(data) -> DownloadEntity` | Create a Download entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 
@@ -254,7 +256,7 @@ API path: `/search`
 
 ### Analyze
 
-Create an instance: `const analyze = client.analyze`
+Create an instance: `analyze = client.Analyze`
 
 #### Operations
 
@@ -271,14 +273,15 @@ Create an instance: `const analyze = client.analyze`
 
 #### Example: List
 
-```ts
-const analyzes = await client.analyze.list()
+```ruby
+# list returns an Array of Analyze records (raises on error).
+analyzes = client.Analyze.list
 ```
 
 
 ### Download
 
-Create an instance: `const download = client.download`
+Create an instance: `download = client.Download`
 
 #### Operations
 
@@ -298,14 +301,15 @@ Create an instance: `const download = client.download`
 
 #### Example: List
 
-```ts
-const downloads = await client.download.list()
+```ruby
+# list returns an Array of Download records (raises on error).
+downloads = client.Download.list
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -325,8 +329,9 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```ruby
+# list returns an Array of Search records (raises on error).
+searchs = client.Search.list
 ```
 
 
@@ -401,7 +406,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-analyze = client.analyze
+analyze = client.Analyze
 analyze.load({ "id" => "example_id" })
 
 # analyze.data_get now returns the loaded analyze data

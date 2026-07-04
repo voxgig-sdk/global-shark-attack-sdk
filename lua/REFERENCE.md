@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## AnalyzeEntity
 
 ```lua
-local analyze = client:analyze(nil)
+local analyze = client:Analyze(nil)
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ local analyze = client:analyze(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:analyze():list()
+local results, err = client:Analyze():list()
 ```
 
 ### Common Methods
@@ -144,7 +144,7 @@ Return the entity name.
 ## DownloadEntity
 
 ```lua
-local download = client:download(nil)
+local download = client:Download(nil)
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ local download = client:download(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:download():list()
+local results, err = client:Download():list()
 ```
 
 ### Common Methods
@@ -200,7 +200,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:search(nil)
+local search = client:Search(nil)
 ```
 
 ### Fields
@@ -220,7 +220,7 @@ local search = client:search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:search():list()
+local results, err = client:Search():list()
 ```
 
 ### Common Methods

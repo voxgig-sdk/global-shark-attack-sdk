@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AnalyzeEntity
 
 ```php
-$analyze = $client->analyze();
+$analyze = $client->Analyze();
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ $analyze = $client->analyze();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->analyze()->list([]);
+$results = $client->Analyze()->list([]);
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## DownloadEntity
 
 ```php
-$download = $client->download();
+$download = $client->Download();
 ```
 
 ### Fields
@@ -166,7 +166,7 @@ $download = $client->download();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->download()->list([]);
+$results = $client->Download()->list([]);
 ```
 
 ### Common Methods
@@ -202,7 +202,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->search();
+$search = $client->Search();
 ```
 
 ### Fields
@@ -222,7 +222,7 @@ $search = $client->search();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->search()->list([]);
+$results = $client->Search()->list([]);
 ```
 
 ### Common Methods
