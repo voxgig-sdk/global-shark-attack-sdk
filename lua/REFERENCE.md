@@ -98,8 +98,8 @@ local analyze = client:Analyze(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | ``$STRING`` | No |  |
-| `y` | ``$NUMBER`` | No |  |
+| `x` | `string` | No |  |
+| `y` | `number` | No |  |
 
 ### Operations
 
@@ -151,11 +151,11 @@ local download = client:Download(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `table` | No |  |
+| `geometry` | `table` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 
@@ -207,11 +207,11 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `table` | No |  |
+| `geometry` | `table` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 

@@ -14,8 +14,7 @@ type Analyze struct {
 	Y *float64 `json:"y,omitempty"`
 }
 
-// AnalyzeListMatch mirrors the analyze fields as an all-optional match
-// filter (Go analog of Partial<Analyze>).
+// AnalyzeListMatch is the typed request payload for Analyze.ListTyped.
 type AnalyzeListMatch struct {
 	X *string `json:"x,omitempty"`
 	Y *float64 `json:"y,omitempty"`
@@ -30,8 +29,7 @@ type Download struct {
 	Recordid *string `json:"recordid,omitempty"`
 }
 
-// DownloadListMatch mirrors the download fields as an all-optional match
-// filter (Go analog of Partial<Download>).
+// DownloadListMatch is the typed request payload for Download.ListTyped.
 type DownloadListMatch struct {
 	Datasetid *string `json:"datasetid,omitempty"`
 	Field *map[string]any `json:"field,omitempty"`
@@ -49,8 +47,7 @@ type Search struct {
 	Recordid *string `json:"recordid,omitempty"`
 }
 
-// SearchListMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	Datasetid *string `json:"datasetid,omitempty"`
 	Field *map[string]any `json:"field,omitempty"`

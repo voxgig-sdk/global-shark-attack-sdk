@@ -140,8 +140,8 @@ const analyze = client.Analyze()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | ``$STRING`` | No |  |
-| `y` | ``$NUMBER`` | No |  |
+| `x` | `string` | No |  |
+| `y` | `number` | No |  |
 
 ### Operations
 
@@ -191,11 +191,11 @@ const download = client.Download()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `Record<string, any>` | No |  |
+| `geometry` | `Record<string, any>` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 
@@ -245,11 +245,11 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `Record<string, any>` | No |  |
+| `geometry` | `Record<string, any>` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 

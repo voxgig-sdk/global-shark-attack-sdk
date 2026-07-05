@@ -11,6 +11,8 @@
 ---@field y? number
 
 ---@class AnalyzeListMatch
+---@field x? string
+---@field y? number
 
 ---@class Download
 ---@field datasetid? string
@@ -20,6 +22,11 @@
 ---@field recordid? string
 
 ---@class DownloadListMatch
+---@field datasetid? string
+---@field field? table
+---@field geometry? table
+---@field record_timestamp? string
+---@field recordid? string
 
 ---@class Search
 ---@field datasetid? string
@@ -29,6 +36,11 @@
 ---@field recordid? string
 
 ---@class SearchListMatch
+---@field datasetid? string
+---@field field? table
+---@field geometry? table
+---@field record_timestamp? string
+---@field recordid? string
 
 local M = {}
 

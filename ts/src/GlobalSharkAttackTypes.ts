@@ -10,7 +10,10 @@ export interface Analyze {
   y?: number
 }
 
-export type AnalyzeListMatch = Partial<Analyze>
+export interface AnalyzeListMatch {
+  x?: string
+  y?: number
+}
 
 export interface Download {
   datasetid?: string
@@ -20,7 +23,13 @@ export interface Download {
   recordid?: string
 }
 
-export type DownloadListMatch = Partial<Download>
+export interface DownloadListMatch {
+  datasetid?: string
+  field?: Record<string, any>
+  geometry?: Record<string, any>
+  record_timestamp?: string
+  recordid?: string
+}
 
 export interface Search {
   datasetid?: string
@@ -30,5 +39,11 @@ export interface Search {
   recordid?: string
 }
 
-export type SearchListMatch = Partial<Search>
+export interface SearchListMatch {
+  datasetid?: string
+  field?: Record<string, any>
+  geometry?: Record<string, any>
+  record_timestamp?: string
+  recordid?: string
+}
 

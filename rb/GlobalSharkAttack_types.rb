@@ -21,7 +21,7 @@ Analyze = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Analyze#list (any subset of Analyze fields).
+# Request payload for Analyze#list.
 #
 # @!attribute [rw] x
 #   @return [String, nil]
@@ -59,7 +59,7 @@ Download = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Download#list (any subset of Download fields).
+# Request payload for Download#list.
 #
 # @!attribute [rw] datasetid
 #   @return [String, nil]
@@ -109,7 +109,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#list (any subset of Search fields).
+# Request payload for Search#list.
 #
 # @!attribute [rw] datasetid
 #   @return [String, nil]

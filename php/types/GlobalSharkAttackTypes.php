@@ -19,7 +19,7 @@ class Analyze
     public ?float $y = null;
 }
 
-/** Match filter for Analyze#list (any subset of Analyze fields). */
+/** Request payload for Analyze#list. */
 class AnalyzeListMatch
 {
     public ?string $x = null;
@@ -36,7 +36,7 @@ class Download
     public ?string $recordid = null;
 }
 
-/** Match filter for Download#list (any subset of Download fields). */
+/** Request payload for Download#list. */
 class DownloadListMatch
 {
     public ?string $datasetid = null;
@@ -56,7 +56,7 @@ class Search
     public ?string $recordid = null;
 }
 
-/** Match filter for Search#list (any subset of Search fields). */
+/** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?string $datasetid = null;

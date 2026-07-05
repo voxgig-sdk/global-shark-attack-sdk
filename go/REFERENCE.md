@@ -105,8 +105,8 @@ analyze := client.Analyze(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | ``$STRING`` | No |  |
-| `y` | ``$NUMBER`` | No |  |
+| `x` | `string` | No |  |
+| `y` | `float64` | No |  |
 
 ### Operations
 
@@ -152,11 +152,11 @@ download := client.Download(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `map[string]any` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 
@@ -202,11 +202,11 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `map[string]any` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 

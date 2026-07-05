@@ -8,7 +8,7 @@ Complete API reference for the GlobalSharkAttack Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'global-shark-attack_sdk'
+require_relative 'GlobalSharkAttack_sdk'
 
 client = GlobalSharkAttackSDK.new(options)
 ```
@@ -101,17 +101,17 @@ analyze = client.Analyze
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | ``$STRING`` | No |  |
-| `y` | ``$NUMBER`` | No |  |
+| `x` | `String` | No |  |
+| `y` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Analyze.list(nil)
+results = client.Analyze.list
 ```
 
 ### Common Methods
@@ -154,20 +154,20 @@ download = client.Download
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `String` | No |  |
+| `field` | `Hash` | No |  |
+| `geometry` | `Hash` | No |  |
+| `record_timestamp` | `String` | No |  |
+| `recordid` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Download.list(nil)
+results = client.Download.list
 ```
 
 ### Common Methods
@@ -210,20 +210,20 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `String` | No |  |
+| `field` | `Hash` | No |  |
+| `geometry` | `Hash` | No |  |
+| `record_timestamp` | `String` | No |  |
+| `recordid` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Search.list(nil)
+results = client.Search.list
 ```
 
 ### Common Methods
