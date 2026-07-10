@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -582,14 +579,17 @@
           "url": "https://public.opendatasoft.com"
         },
         "description": "The Global Shark Attack File (GSAF) API offers access to a comprehensive dataset of human-shark interactions, including detailed incident reports categorized by type, such as unprovoked, provoked, boat-related, war-related, and questionable incidents. Users can explore bite patterns, species identification, and circumstances surrounding shark encounters, providing valuable insights for researchers, enthusiasts, and conservationists interested in understanding shark behavior and the rarity of shark attacks.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://public.opendatasoft.com/api/records/1.0"
           }
         ],
+        "summary": "The Global Shark Attack File (GSAF) API offers access to a comprehensive dataset of human-shark interactions, including detailed incident reports categorized by type, such as unprovoked, provoked, boat-related, war-related, and questionabl…",
         "title": "Global Shark Attack API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://public.opendatasoft.com"
       },
       "option": {},
       "target": {
@@ -642,6 +642,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -692,6 +695,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
