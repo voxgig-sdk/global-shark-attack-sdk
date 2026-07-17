@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- GlobalSharkAttack SDK exists test
 
 local sdk = require("global-shark-attack_sdk")
 
