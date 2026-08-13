@@ -60,11 +60,11 @@ def download_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID" => {},
-    "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
+    "GLOBAL_SHARK_ATTACK_TEST_DOWNLOAD_ENTID" => {},
+    "GLOBAL_SHARK_ATTACK_TEST_LIVE" => "FALSE",
   })
 
-  live = env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE"
+  live = env["GLOBAL_SHARK_ATTACK_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

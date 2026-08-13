@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'GlobalSharkAttack',
   }
 
 
@@ -137,6 +137,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/analyze",
               "parts": [
@@ -177,7 +178,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "field",
+          "name": "fields",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -250,6 +251,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/download",
               "parts": [
@@ -288,7 +290,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "field",
+          "name": "fields",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -410,6 +412,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search",
               "parts": [

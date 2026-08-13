@@ -150,7 +150,7 @@ download = client.Download()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `str` | No |  |
-| `field` | `dict` | No |  |
+| `fields` | `dict` | No |  |
 | `geometry` | `dict` | No |  |
 | `record_timestamp` | `str` | No |  |
 | `recordid` | `str` | No |  |
@@ -207,7 +207,7 @@ search = client.Search()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `str` | No |  |
-| `field` | `dict` | No |  |
+| `fields` | `dict` | No |  |
 | `geometry` | `dict` | No |  |
 | `record_timestamp` | `str` | No |  |
 | `recordid` | `str` | No |  |

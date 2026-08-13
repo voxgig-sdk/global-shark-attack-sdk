@@ -37,7 +37,7 @@ class DownloadEntity extends GlobalSharkAttackEntityBase<Download> {
 
 
 
-  async list(this: any, reqmatch?: DownloadListMatch, ctrl?: Control): Promise<Download[]> {
+  async list(this: any, reqmatch?: DownloadListMatch, ctrl?: Control): Promise<DownloadEntity[]> {
 
     const utility = this._utility
 

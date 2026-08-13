@@ -37,7 +37,7 @@ class AnalyzeEntity extends GlobalSharkAttackEntityBase<Analyze> {
 
 
 
-  async list(this: any, reqmatch?: AnalyzeListMatch, ctrl?: Control): Promise<Analyze[]> {
+  async list(this: any, reqmatch?: AnalyzeListMatch, ctrl?: Control): Promise<AnalyzeEntity[]> {
 
     const utility = this._utility
 

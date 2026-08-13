@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    analyzes = client.Analyze().list()
-    print(analyzes)
+    downloads = client.Download().list()
+    print(downloads)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = GlobalSharkAttackSDK.test()
 
-# Entity ops return the bare record and raise on error.
-analyze = client.Analyze().list()
-# analyze contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+download = client.Download().list()
+# download contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,7 +223,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -256,7 +257,7 @@ API path: `/analyze`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -270,7 +271,7 @@ API path: `/download`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -323,7 +324,7 @@ Create an instance: `download = client.Download()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `str` |  |
-| `field` | `dict` |  |
+| `fields` | `dict` |  |
 | `geometry` | `dict` |  |
 | `record_timestamp` | `str` |  |
 | `recordid` | `str` |  |
@@ -350,7 +351,7 @@ Create an instance: `search = client.Search()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `str` |  |
-| `field` | `dict` |  |
+| `fields` | `dict` |  |
 | `geometry` | `dict` |  |
 | `record_timestamp` | `str` |  |
 | `recordid` | `str` |  |
@@ -437,11 +438,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-analyze = client.Analyze()
-analyze.list()
+download = client.Download()
+download.list()
 
-# analyze.data_get() now returns the analyze data from the last list
-# analyze.match_get() returns the last match criteria
+# download.data_get() now returns the download data from the last list
+# download.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

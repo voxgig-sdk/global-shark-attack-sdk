@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# GlobalSharkAttack SDK exists test
 
 import pytest
 from globalsharkattack_sdk import GlobalSharkAttackSDK

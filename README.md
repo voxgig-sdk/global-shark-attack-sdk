@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = GlobalSharkAttackSDK.test()
-const analyzes = await client.Analyze().list()
-// analyzes is an array of bare Analyze records populated with mock data
-console.log(analyzes)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = GlobalSharkAttackSDK.test({
+  entity: {
+    download: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const downloads = await client.Download().list()
+// downloads is an array of Download entities, populated with mock data
+// — call downloads[0].data() for the record itself
+console.log(downloads)
 ```
 
 ### Python
 
 ```python
 client = GlobalSharkAttackSDK.test()
-analyzes = client.Analyze().list()
-print(analyzes)
+downloads = client.Download().list()
+print(downloads)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(analyzes)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = GlobalSharkAttackSDK::test([
-    "entity" => ["analyze" => ["test01" => []]],
+    "entity" => ["download" => ["test01" => []]],
 ]);
-$analyzes = $client->Analyze()->list();
+$downloads = $client->Download()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Analyze(nil).List(
+result, err := client.Download(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Analyze(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = GlobalSharkAttackSDK.test({
-  "entity" => { "analyze" => { "test01" => {} } },
+  "entity" => { "download" => { "test01" => {} } },
 })
-analyzes = client.Analyze.list()
+downloads = client.Download.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Analyze():list()
+local results, err = client:Download():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack'
 
 const client = new GlobalSharkAttackSDK()
 
-// List all analyzes (returns Analyze[])
+// List all analyzes (returns AnalyzeEntity[] — .data() for the record)
 const analyzes = await client.Analyze().list()
 for (const analyze of analyzes) {
   console.log(analyze)
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://public.opendatasoft.com](https://public.opendatasoft.com)
 

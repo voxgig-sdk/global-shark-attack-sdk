@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  analyzes = client.Analyze.list()
+  downloads = client.Download.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = GlobalSharkAttackSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-analyze = client.Analyze.list()
-puts analyze
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+download = client.Download.list()
+puts download
 ```
 
 ### Use a custom fetch function
@@ -250,7 +251,7 @@ API path: `/analyze`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -264,7 +265,7 @@ API path: `/download`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -318,7 +319,7 @@ Create an instance: `download = client.Download`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `String` |  |
-| `field` | `Hash` |  |
+| `fields` | `Hash` |  |
 | `geometry` | `Hash` |  |
 | `record_timestamp` | `String` |  |
 | `recordid` | `String` |  |
@@ -346,7 +347,7 @@ Create an instance: `search = client.Search`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `String` |  |
-| `field` | `Hash` |  |
+| `fields` | `Hash` |  |
 | `geometry` | `Hash` |  |
 | `record_timestamp` | `String` |  |
 | `recordid` | `String` |  |
@@ -435,11 +436,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-analyze = client.Analyze
-analyze.list()
+download = client.Download
+download.list()
 
-# analyze.data_get now returns the analyze data from the last list
-# analyze.match_get returns the last match criteria
+# download.data_get now returns the download data from the last list
+# download.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

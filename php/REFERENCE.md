@@ -154,7 +154,7 @@ $download = $client->Download();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `array` | No |  |
+| `fields` | `array` | No |  |
 | `geometry` | `array` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |
@@ -210,7 +210,7 @@ $search = $client->Search();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `array` | No |  |
+| `fields` | `array` | No |  |
 | `geometry` | `array` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |

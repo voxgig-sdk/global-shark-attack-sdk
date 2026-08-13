@@ -26,8 +26,8 @@ import {
 describe('AnalyzeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when GLOBALSHARKATTACK_TEST_LIVE=TRUE.
-  afterEach(liveDelay('GLOBALSHARKATTACK_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when GLOBAL_SHARK_ATTACK_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GLOBAL_SHARK_ATTACK_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = GlobalSharkAttackSDK.test()
@@ -63,7 +63,7 @@ describe('AnalyzeEntity', async () => {
     const analyze_ref01_ent = client.Analyze()
     const analyze_ref01_match: any = {}
 
-    const analyze_ref01_list = await analyze_ref01_ent.list(analyze_ref01_match)
+    const analyze_ref01_list = (await analyze_ref01_ent.list(analyze_ref01_match)).map((e: any) => e.data())
 
 
   })

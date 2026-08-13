@@ -26,8 +26,8 @@ import {
 describe('DownloadEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when GLOBALSHARKATTACK_TEST_LIVE=TRUE.
-  afterEach(liveDelay('GLOBALSHARKATTACK_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when GLOBAL_SHARK_ATTACK_TEST_LIVE=TRUE.
+  afterEach(liveDelay('GLOBAL_SHARK_ATTACK_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = GlobalSharkAttackSDK.test()
@@ -63,7 +63,7 @@ describe('DownloadEntity', async () => {
     const download_ref01_ent = client.Download()
     const download_ref01_match: any = {}
 
-    const download_ref01_list = await download_ref01_ent.list(download_ref01_match)
+    const download_ref01_list = (await download_ref01_ent.list(download_ref01_match)).map((e: any) => e.data())
 
 
   })

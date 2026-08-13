@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from globalsharkattack_sdk.utility.voxgig_struct import voxgig_struct as vs
 from globalsharkattack_sdk import GlobalSharkAttackSDK
-from core import helpers
+from globalsharkattack_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _search_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "GLOBALSHARKATTACK_TEST_SEARCH_ENTID": {},
-        "GLOBALSHARKATTACK_TEST_LIVE": "FALSE",
+        "GLOBAL_SHARK_ATTACK_TEST_SEARCH_ENTID": {},
+        "GLOBAL_SHARK_ATTACK_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("GLOBALSHARKATTACK_TEST_LIVE") == "TRUE"
+    live = env.get("GLOBAL_SHARK_ATTACK_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

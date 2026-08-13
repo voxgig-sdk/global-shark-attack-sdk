@@ -23,8 +23,8 @@ module GlobalSharkAttackTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("GLOBALSHARKATTACK_TEST_LIVE")
-    override = getenv("GLOBALSHARKATTACK_TEST_OVERRIDE")
+    live = getenv("GLOBAL_SHARK_ATTACK_TEST_LIVE")
+    override = getenv("GLOBAL_SHARK_ATTACK_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module GlobalSharkAttackTestRunner
       end
     end
 
-    explain = getenv("GLOBALSHARKATTACK_TEST_EXPLAIN")
-    m["GLOBALSHARKATTACK_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("GLOBAL_SHARK_ATTACK_TEST_EXPLAIN")
+    m["GLOBAL_SHARK_ATTACK_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local analyzes, err = client:Analyze():list()
+local downloads, err = client:Download():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Analyze():list()
+local result, err = client:Download():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -220,9 +220,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local analyze, err = client:Analyze():load()
+    local analyze, err = client:Analyze():list()
     if err then error(err) end
-    -- analyze is the loaded record
+    -- analyze is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -245,7 +245,7 @@ API path: `/analyze`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -259,7 +259,7 @@ API path: `/download`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -312,7 +312,7 @@ Create an instance: `local download = client:Download(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `table` |  |
+| `fields` | `table` |  |
 | `geometry` | `table` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |
@@ -339,7 +339,7 @@ Create an instance: `local search = client:Search(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `table` |  |
+| `fields` | `table` |  |
 | `geometry` | `table` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |
@@ -427,11 +427,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local analyze = client:Analyze()
-analyze:list()
+local download = client:Download()
+download:list()
 
--- analyze:data_get() now returns the analyze data from the last list
--- analyze:match_get() returns the last match criteria
+-- download:data_get() now returns the download data from the last list
+-- download:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

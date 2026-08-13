@@ -30,7 +30,7 @@ class AnalyzeListMatch
 class Download
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;
@@ -40,7 +40,7 @@ class Download
 class DownloadListMatch
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;
@@ -50,7 +50,7 @@ class DownloadListMatch
 class Search
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;
@@ -60,7 +60,7 @@ class Search
 class SearchListMatch
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;

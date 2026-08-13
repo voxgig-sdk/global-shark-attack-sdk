@@ -109,6 +109,7 @@ class GlobalSharkAttackConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/analyze',
                   'parts' => [
@@ -149,7 +150,7 @@ class GlobalSharkAttackConfig
             ],
             [
               'active' => true,
-              'name' => 'field',
+              'name' => 'fields',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -222,6 +223,7 @@ class GlobalSharkAttackConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/download',
                   'parts' => [
@@ -260,7 +262,7 @@ class GlobalSharkAttackConfig
             ],
             [
               'active' => true,
-              'name' => 'field',
+              'name' => 'fields',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -382,6 +384,7 @@ class GlobalSharkAttackConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
                   'parts' => [

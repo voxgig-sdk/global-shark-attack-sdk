@@ -61,11 +61,11 @@ function analyze_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["GLOBALSHARKATTACK_TEST_ANALYZE_ENTID"] = {},
-    ["GLOBALSHARKATTACK_TEST_LIVE"] = "FALSE",
+    ["GLOBAL_SHARK_ATTACK_TEST_ANALYZE_ENTID"] = {},
+    ["GLOBAL_SHARK_ATTACK_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE"
+  local live = env["GLOBAL_SHARK_ATTACK_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

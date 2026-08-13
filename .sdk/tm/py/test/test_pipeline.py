@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import GlobalSharkAttackSDK
-from core.error import GlobalSharkAttackError
-from core.result import GlobalSharkAttackResult
-from core.response import GlobalSharkAttackResponse
-from core.spec import GlobalSharkAttackSpec
-from feature.base_feature import GlobalSharkAttackBaseFeature
+from projectname_sdk.core.error import GlobalSharkAttackError
+from projectname_sdk.core.result import GlobalSharkAttackResult
+from projectname_sdk.core.response import GlobalSharkAttackResponse
+from projectname_sdk.core.spec import GlobalSharkAttackSpec
+from projectname_sdk.feature.base_feature import GlobalSharkAttackBaseFeature
 
 
 def _client():

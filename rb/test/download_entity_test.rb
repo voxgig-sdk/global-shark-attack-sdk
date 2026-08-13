@@ -62,7 +62,7 @@ class DownloadEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set GLOBAL_SHARK_ATTACK_TEST_DOWNLOAD_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -111,22 +111,22 @@ def download_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID"]
+  entid_env_raw = ENV["GLOBAL_SHARK_ATTACK_TEST_DOWNLOAD_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID" => idmap,
-    "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
-    "GLOBALSHARKATTACK_TEST_EXPLAIN" => "FALSE",
+    "GLOBAL_SHARK_ATTACK_TEST_DOWNLOAD_ENTID" => idmap,
+    "GLOBAL_SHARK_ATTACK_TEST_LIVE" => "FALSE",
+    "GLOBAL_SHARK_ATTACK_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["GLOBALSHARKATTACK_TEST_DOWNLOAD_ENTID"])
+    env["GLOBAL_SHARK_ATTACK_TEST_DOWNLOAD_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE"
+  if env["GLOBAL_SHARK_ATTACK_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -135,13 +135,13 @@ def download_basic_setup(extra)
     client = GlobalSharkAttackSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["GLOBALSHARKATTACK_TEST_LIVE"] == "TRUE"
+  live = env["GLOBAL_SHARK_ATTACK_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["GLOBALSHARKATTACK_TEST_EXPLAIN"] == "TRUE",
+    explain: env["GLOBAL_SHARK_ATTACK_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

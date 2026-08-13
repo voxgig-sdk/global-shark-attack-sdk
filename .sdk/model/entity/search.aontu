@@ -11,7 +11,7 @@ main: kit: entity: search: {
       type: "`$STRING`"
     }
     {
-      name: "field"
+      name: "fields"
       req: false
       type: "`$OBJECT`"
     }

@@ -66,11 +66,11 @@ function search_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "GLOBALSHARKATTACK_TEST_SEARCH_ENTID" => [],
-        "GLOBALSHARKATTACK_TEST_LIVE" => "FALSE",
+        "GLOBAL_SHARK_ATTACK_TEST_SEARCH_ENTID" => [],
+        "GLOBAL_SHARK_ATTACK_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["GLOBALSHARKATTACK_TEST_LIVE"] === "TRUE";
+    $live = $env["GLOBAL_SHARK_ATTACK_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

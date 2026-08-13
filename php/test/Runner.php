@@ -43,8 +43,8 @@ class GlobalSharkAttackTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('GLOBALSHARKATTACK_TEST_LIVE');
-        $override = self::getenv('GLOBALSHARKATTACK_TEST_OVERRIDE');
+        $live = self::getenv('GLOBAL_SHARK_ATTACK_TEST_LIVE');
+        $override = self::getenv('GLOBAL_SHARK_ATTACK_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class GlobalSharkAttackTestRunner
             }
         }
 
-        $explain = self::getenv('GLOBALSHARKATTACK_TEST_EXPLAIN');
+        $explain = self::getenv('GLOBAL_SHARK_ATTACK_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['GLOBALSHARKATTACK_TEST_EXPLAIN'] = $explain;
+            $m['GLOBAL_SHARK_ATTACK_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

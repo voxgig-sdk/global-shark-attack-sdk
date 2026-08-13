@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ GlobalSharkAttackUtility.registrar = ->(u) {
   u.prepare_params = GlobalSharkAttackUtilities::PrepareParams
   u.prepare_path = GlobalSharkAttackUtilities::PreparePath
   u.prepare_query = GlobalSharkAttackUtilities::PrepareQuery
+  u.graphql_body = GlobalSharkAttackUtilities::GraphqlBody
+  u.graphql_errors = GlobalSharkAttackUtilities::GraphqlErrors
   u.result_basic = GlobalSharkAttackUtilities::ResultBasic
   u.result_body = GlobalSharkAttackUtilities::ResultBody
   u.result_headers = GlobalSharkAttackUtilities::ResultHeaders

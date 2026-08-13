@@ -159,7 +159,7 @@ fmt.Println(download.GetName()) // "download"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `map[string]any` | No |  |
+| `fields` | `map[string]any` | No |  |
 | `geometry` | `map[string]any` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |
@@ -214,7 +214,7 @@ fmt.Println(search.GetName()) // "search"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `map[string]any` | No |  |
+| `fields` | `map[string]any` | No |  |
 | `geometry` | `map[string]any` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |

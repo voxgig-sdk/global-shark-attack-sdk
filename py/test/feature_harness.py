@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import GlobalSharkAttackControl
-from core.error import GlobalSharkAttackError
-from core.result import GlobalSharkAttackResult
-from core.spec import GlobalSharkAttackSpec
+from globalsharkattack_sdk.config import make_config
+from globalsharkattack_sdk.features import _make_feature
+from globalsharkattack_sdk.core.control import GlobalSharkAttackControl
+from globalsharkattack_sdk.core.error import GlobalSharkAttackError
+from globalsharkattack_sdk.core.result import GlobalSharkAttackResult
+from globalsharkattack_sdk.core.spec import GlobalSharkAttackSpec
 
 
 # True when this SDK was generated with the named feature.

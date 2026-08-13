@@ -39,7 +39,7 @@ AnalyzeListMatch = Struct.new(
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -52,7 +52,7 @@ AnalyzeListMatch = Struct.new(
 #   @return [String, nil]
 Download = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,
@@ -64,7 +64,7 @@ Download = Struct.new(
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -77,7 +77,7 @@ Download = Struct.new(
 #   @return [String, nil]
 DownloadListMatch = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,
@@ -89,7 +89,7 @@ DownloadListMatch = Struct.new(
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -102,7 +102,7 @@ DownloadListMatch = Struct.new(
 #   @return [String, nil]
 Search = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,
@@ -114,7 +114,7 @@ Search = Struct.new(
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -127,7 +127,7 @@ Search = Struct.new(
 #   @return [String, nil]
 SearchListMatch = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,

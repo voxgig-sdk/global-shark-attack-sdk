@@ -35,7 +35,9 @@ const client = new GlobalSharkAttackSDK()
 
 ### 2. List analyze records
 
-`list()` resolves to an array of Analyze objects — iterate it directly:
+`list()` resolves to an array of Analyze ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const analyzes = await client.Analyze().list()
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const analyzes = await client.Analyze().list()
-  console.log(analyzes)
+  const downloads = await client.Download().list()
+  console.log(downloads)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = GlobalSharkAttackSDK.test()
 
-const analyze = await client.Analyze().list()
-// analyze is a bare entity populated with mock response data
-console.log(analyze)
+const download = await client.Download().list()
+// download is the entity, populated with mock response data
+// — call download.data() for the record itself
+console.log(download)
 ```
 
 You can also use the instance method:
@@ -136,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Analyze()
+const entity = client.Download()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -298,7 +301,7 @@ API path: `/analyze`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -312,7 +315,7 @@ API path: `/download`
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -365,7 +368,7 @@ Create an instance: `const download = client.Download()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `Record<string, any>` |  |
+| `fields` | `Record<string, any>` |  |
 | `geometry` | `Record<string, any>` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |
@@ -392,7 +395,7 @@ Create an instance: `const search = client.Search()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `Record<string, any>` |  |
+| `fields` | `Record<string, any>` |  |
 | `geometry` | `Record<string, any>` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |
@@ -473,11 +476,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const analyze = client.Analyze()
-await analyze.list()
+const download = client.Download()
+await download.list()
 
-// analyze.data() now returns the analyze data from the last `list`
-// analyze.match() returns the last match criteria
+// download.data() now returns the download data from the last `list`
+// download.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -16,28 +16,28 @@
 
 ---@class Download
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string
 
 ---@class DownloadListMatch
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string
 
 ---@class Search
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string
 
 ---@class SearchListMatch
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string

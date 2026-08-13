@@ -192,7 +192,7 @@ const download = client.Download()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `Record<string, any>` | No |  |
+| `fields` | `Record<string, any>` | No |  |
 | `geometry` | `Record<string, any>` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |
@@ -246,7 +246,7 @@ const search = client.Search()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `Record<string, any>` | No |  |
+| `fields` | `Record<string, any>` | No |  |
 | `geometry` | `Record<string, any>` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |

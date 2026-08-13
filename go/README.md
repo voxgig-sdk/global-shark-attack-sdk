@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-analyzes, err := client.Analyze(nil).List(nil, nil)
+downloads, err := client.Download(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = analyzes
+_ = downloads
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-analyze, err := client.Analyze(nil).List(
+download, err := client.Download(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(analyze) // the returned mock data
+fmt.Println(download) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -274,7 +274,7 @@ API path: `/analyze`
 | Field | Description |
 | --- | --- |
 | `"datasetid"` |  |
-| `"field"` |  |
+| `"fields"` |  |
 | `"geometry"` |  |
 | `"record_timestamp"` |  |
 | `"recordid"` |  |
@@ -288,7 +288,7 @@ API path: `/download`
 | Field | Description |
 | --- | --- |
 | `"datasetid"` |  |
-| `"field"` |  |
+| `"fields"` |  |
 | `"geometry"` |  |
 | `"record_timestamp"` |  |
 | `"recordid"` |  |
@@ -345,7 +345,7 @@ Create an instance: `download := client.Download(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `map[string]any` |  |
+| `fields` | `map[string]any` |  |
 | `geometry` | `map[string]any` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |
@@ -376,7 +376,7 @@ Create an instance: `search := client.Search(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `map[string]any` |  |
+| `fields` | `map[string]any` |  |
 | `geometry` | `map[string]any` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |
@@ -465,11 +465,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-analyze := client.Analyze(nil)
-analyze.List(nil, nil)
+download := client.Download(nil)
+download.List(nil, nil)
 
-// analyze.Data() now returns the analyze data from the last list
-// analyze.Match() returns the last match criteria
+// download.Data() now returns the download data from the last list
+// download.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration
