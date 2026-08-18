@@ -40,7 +40,7 @@ class GlobalSharkAttackSDK
         $utility = new GlobalSharkAttackUtility();
         $this->_utility = $utility;
 
-        $config = GlobalSharkAttackConfig::make_config();
+        $config = GlobalSharkAttackConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

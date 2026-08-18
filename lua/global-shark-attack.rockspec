@@ -23,6 +23,7 @@ build = {
   modules = {
     ["global-shark-attack_sdk"] = "global-shark-attack_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

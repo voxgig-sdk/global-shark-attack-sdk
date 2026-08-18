@@ -28,7 +28,7 @@ class GlobalSharkAttackSDK
     utility = GlobalSharkAttackUtility.new
     @_utility = utility
 
-    config = GlobalSharkAttackConfig.make_config
+    config = GlobalSharkAttackConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
