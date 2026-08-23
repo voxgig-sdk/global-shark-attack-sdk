@@ -8,11 +8,13 @@ main: kit: entity: analyze: {
     {
       name: "x"
       req: false
+      short: "X-axis value"
       type: "`$STRING`"
     }
     {
       name: "y"
       req: false
+      short: "Aggregated Y-axis value"
       type: "`$NUMBER`"
     }
   ]

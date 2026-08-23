@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'GlobalSharkAttack',
+        slug: "global-shark-attack",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -62,10 +73,12 @@ class Config {
       "fields": [
         {
           "name": "x",
+          "short": "X-axis value",
           "type": "`$STRING`"
         },
         {
           "name": "y",
+          "short": "Aggregated Y-axis value",
           "type": "`$NUMBER`"
         }
       ],
@@ -151,6 +164,7 @@ class Config {
       "fields": [
         {
           "name": "datasetid",
+          "short": "Dataset identifier",
           "type": "`$STRING`"
         },
         {
@@ -159,14 +173,17 @@ class Config {
         },
         {
           "name": "geometry",
+          "short": "GeoJSON geometry object",
           "type": "`$OBJECT`"
         },
         {
           "name": "record_timestamp",
+          "short": "Timestamp of record creation or update",
           "type": "`$STRING`"
         },
         {
           "name": "recordid",
+          "short": "Unique record identifier",
           "type": "`$STRING`"
         }
       ],
@@ -238,6 +255,7 @@ class Config {
       "fields": [
         {
           "name": "datasetid",
+          "short": "Dataset identifier",
           "type": "`$STRING`"
         },
         {
@@ -246,14 +264,17 @@ class Config {
         },
         {
           "name": "geometry",
+          "short": "GeoJSON geometry object",
           "type": "`$OBJECT`"
         },
         {
           "name": "record_timestamp",
+          "short": "Timestamp of record creation or update",
           "type": "`$STRING`"
         },
         {
           "name": "recordid",
+          "short": "Unique record identifier",
           "type": "`$STRING`"
         }
       ],

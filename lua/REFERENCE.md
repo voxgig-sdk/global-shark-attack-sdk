@@ -98,8 +98,8 @@ local analyze = client:Analyze(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | `string` | No |  |
-| `y` | `number` | No |  |
+| `x` | `string` | No | X-axis value |
+| `y` | `number` | No | Aggregated Y-axis value |
 
 ### Operations
 
@@ -151,11 +151,11 @@ local download = client:Download(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `table` | No |  |
-| `geometry` | `table` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `table` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 
@@ -207,11 +207,11 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `table` | No |  |
-| `geometry` | `table` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `table` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 

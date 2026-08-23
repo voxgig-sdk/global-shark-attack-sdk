@@ -19,6 +19,9 @@ module GlobalSharkAttackConfig
     {
       "main" => {
         "name" => "GlobalSharkAttack",
+        "slug" => "global-shark-attack",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -43,10 +46,12 @@ module GlobalSharkAttackConfig
           "fields" => [
             {
               "name" => "x",
+              "short" => "X-axis value",
               "type" => "`$STRING`",
             },
             {
               "name" => "y",
+              "short" => "Aggregated Y-axis value",
               "type" => "`$NUMBER`",
             },
           ],
@@ -132,6 +137,7 @@ module GlobalSharkAttackConfig
           "fields" => [
             {
               "name" => "datasetid",
+              "short" => "Dataset identifier",
               "type" => "`$STRING`",
             },
             {
@@ -140,14 +146,17 @@ module GlobalSharkAttackConfig
             },
             {
               "name" => "geometry",
+              "short" => "GeoJSON geometry object",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "record_timestamp",
+              "short" => "Timestamp of record creation or update",
               "type" => "`$STRING`",
             },
             {
               "name" => "recordid",
+              "short" => "Unique record identifier",
               "type" => "`$STRING`",
             },
           ],
@@ -219,6 +228,7 @@ module GlobalSharkAttackConfig
           "fields" => [
             {
               "name" => "datasetid",
+              "short" => "Dataset identifier",
               "type" => "`$STRING`",
             },
             {
@@ -227,14 +237,17 @@ module GlobalSharkAttackConfig
             },
             {
               "name" => "geometry",
+              "short" => "GeoJSON geometry object",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "record_timestamp",
+              "short" => "Timestamp of record creation or update",
               "type" => "`$STRING`",
             },
             {
               "name" => "recordid",
+              "short" => "Unique record identifier",
               "type" => "`$STRING`",
             },
           ],

@@ -239,8 +239,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `x` |  |
-| `y` |  |
+| `x` | X-axis value |
+| `y` | Aggregated Y-axis value |
 
 Operations: List.
 
@@ -250,11 +250,11 @@ API path: `/analyze`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -264,11 +264,11 @@ API path: `/download`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -293,8 +293,8 @@ Create an instance: `analyze = client.Analyze`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `x` | `String` |  |
-| `y` | `Float` |  |
+| `x` | `String` | X-axis value |
+| `y` | `Float` | Aggregated Y-axis value |
 
 #### Example: List
 
@@ -318,11 +318,11 @@ Create an instance: `download = client.Download`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `String` |  |
+| `datasetid` | `String` | Dataset identifier |
 | `fields` | `Hash` |  |
-| `geometry` | `Hash` |  |
-| `record_timestamp` | `String` |  |
-| `recordid` | `String` |  |
+| `geometry` | `Hash` | GeoJSON geometry object |
+| `record_timestamp` | `String` | Timestamp of record creation or update |
+| `recordid` | `String` | Unique record identifier |
 
 #### Example: List
 
@@ -346,11 +346,11 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `String` |  |
+| `datasetid` | `String` | Dataset identifier |
 | `fields` | `Hash` |  |
-| `geometry` | `Hash` |  |
-| `record_timestamp` | `String` |  |
-| `recordid` | `String` |  |
+| `geometry` | `Hash` | GeoJSON geometry object |
+| `record_timestamp` | `String` | Timestamp of record creation or update |
+| `recordid` | `String` | Unique record identifier |
 
 #### Example: List
 

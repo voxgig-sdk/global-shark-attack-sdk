@@ -233,8 +233,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `x` |  |
-| `y` |  |
+| `x` | X-axis value |
+| `y` | Aggregated Y-axis value |
 
 Operations: List.
 
@@ -244,11 +244,11 @@ API path: `/analyze`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -258,11 +258,11 @@ API path: `/download`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -287,8 +287,8 @@ Create an instance: `local analyze = client:Analyze(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `x` | `string` |  |
-| `y` | `number` |  |
+| `x` | `string` | X-axis value |
+| `y` | `number` | Aggregated Y-axis value |
 
 #### Example: List
 
@@ -311,11 +311,11 @@ Create an instance: `local download = client:Download(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `table` |  |
-| `geometry` | `table` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `table` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 
@@ -338,11 +338,11 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `table` |  |
-| `geometry` | `table` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `table` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 

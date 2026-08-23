@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "GlobalSharkAttack",
+			"slug": "global-shark-attack",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,10 +38,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "x",
+						"short": "X-axis value",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "y",
+						"short": "Aggregated Y-axis value",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -124,6 +129,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "datasetid",
+						"short": "Dataset identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -132,14 +138,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "geometry",
+						"short": "GeoJSON geometry object",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "record_timestamp",
+						"short": "Timestamp of record creation or update",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "recordid",
+						"short": "Unique record identifier",
 						"type": "`$STRING`",
 					},
 				},
@@ -211,6 +220,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "datasetid",
+						"short": "Dataset identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -219,14 +229,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "geometry",
+						"short": "GeoJSON geometry object",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "record_timestamp",
+						"short": "Timestamp of record creation or update",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "recordid",
+						"short": "Unique record identifier",
 						"type": "`$STRING`",
 					},
 				},

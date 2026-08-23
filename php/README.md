@@ -249,8 +249,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `x` |  |
-| `y` |  |
+| `x` | X-axis value |
+| `y` | Aggregated Y-axis value |
 
 Operations: List.
 
@@ -260,11 +260,11 @@ API path: `/analyze`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -274,11 +274,11 @@ API path: `/download`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -303,8 +303,8 @@ Create an instance: `$analyze = $client->Analyze();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `x` | `string` |  |
-| `y` | `float` |  |
+| `x` | `string` | X-axis value |
+| `y` | `float` | Aggregated Y-axis value |
 
 #### Example: List
 
@@ -328,11 +328,11 @@ Create an instance: `$download = $client->Download();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `array` |  |
-| `geometry` | `array` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `array` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 
@@ -356,11 +356,11 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `array` |  |
-| `geometry` | `array` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `array` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 

@@ -36,12 +36,14 @@
               "active": true,
               "name": "x",
               "req": false,
+              "short": "X-axis value",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "y",
               "req": false,
+              "short": "Aggregated Y-axis value",
               "type": "`$NUMBER`"
             }
           ],
@@ -145,6 +147,7 @@
               "active": true,
               "name": "datasetid",
               "req": false,
+              "short": "Dataset identifier",
               "type": "`$STRING`"
             },
             {
@@ -157,18 +160,21 @@
               "active": true,
               "name": "geometry",
               "req": false,
+              "short": "GeoJSON geometry object",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "record_timestamp",
               "req": false,
+              "short": "Timestamp of record creation or update",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "recordid",
               "req": false,
+              "short": "Unique record identifier",
               "type": "`$STRING`"
             }
           ],
@@ -254,6 +260,7 @@
               "active": true,
               "name": "datasetid",
               "req": false,
+              "short": "Dataset identifier",
               "type": "`$STRING`"
             },
             {
@@ -266,18 +273,21 @@
               "active": true,
               "name": "geometry",
               "req": false,
+              "short": "GeoJSON geometry object",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "record_timestamp",
               "req": false,
+              "short": "Timestamp of record creation or update",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "recordid",
               "req": false,
+              "short": "Unique record identifier",
               "type": "`$STRING`"
             }
           ],

@@ -140,8 +140,8 @@ const analyze = client.Analyze()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | `string` | No |  |
-| `y` | `number` | No |  |
+| `x` | `string` | No | X-axis value |
+| `y` | `number` | No | Aggregated Y-axis value |
 
 ### Operations
 
@@ -191,11 +191,11 @@ const download = client.Download()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `Record<string, any>` | No |  |
-| `geometry` | `Record<string, any>` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `Record<string, any>` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 
@@ -245,11 +245,11 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `Record<string, any>` | No |  |
-| `geometry` | `Record<string, any>` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `Record<string, any>` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 

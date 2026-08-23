@@ -245,8 +245,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `x` |  |
-| `y` |  |
+| `x` | X-axis value |
+| `y` | Aggregated Y-axis value |
 
 Operations: List.
 
@@ -256,11 +256,11 @@ API path: `/analyze`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -270,11 +270,11 @@ API path: `/download`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: List.
 
@@ -299,8 +299,8 @@ Create an instance: `analyze = client.Analyze()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `x` | `str` |  |
-| `y` | `float` |  |
+| `x` | `str` | X-axis value |
+| `y` | `float` | Aggregated Y-axis value |
 
 #### Example: List
 
@@ -323,11 +323,11 @@ Create an instance: `download = client.Download()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `str` |  |
+| `datasetid` | `str` | Dataset identifier |
 | `fields` | `dict` |  |
-| `geometry` | `dict` |  |
-| `record_timestamp` | `str` |  |
-| `recordid` | `str` |  |
+| `geometry` | `dict` | GeoJSON geometry object |
+| `record_timestamp` | `str` | Timestamp of record creation or update |
+| `recordid` | `str` | Unique record identifier |
 
 #### Example: List
 
@@ -350,11 +350,11 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `str` |  |
+| `datasetid` | `str` | Dataset identifier |
 | `fields` | `dict` |  |
-| `geometry` | `dict` |  |
-| `record_timestamp` | `str` |  |
-| `recordid` | `str` |  |
+| `geometry` | `dict` | GeoJSON geometry object |
+| `record_timestamp` | `str` | Timestamp of record creation or update |
+| `recordid` | `str` | Unique record identifier |
 
 #### Example: List
 

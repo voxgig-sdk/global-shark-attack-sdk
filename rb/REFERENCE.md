@@ -101,8 +101,8 @@ analyze = client.Analyze
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | `String` | No |  |
-| `y` | `Float` | No |  |
+| `x` | `String` | No | X-axis value |
+| `y` | `Float` | No | Aggregated Y-axis value |
 
 ### Operations
 
@@ -154,11 +154,11 @@ download = client.Download
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `String` | No |  |
+| `datasetid` | `String` | No | Dataset identifier |
 | `fields` | `Hash` | No |  |
-| `geometry` | `Hash` | No |  |
-| `record_timestamp` | `String` | No |  |
-| `recordid` | `String` | No |  |
+| `geometry` | `Hash` | No | GeoJSON geometry object |
+| `record_timestamp` | `String` | No | Timestamp of record creation or update |
+| `recordid` | `String` | No | Unique record identifier |
 
 ### Operations
 
@@ -210,11 +210,11 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `String` | No |  |
+| `datasetid` | `String` | No | Dataset identifier |
 | `fields` | `Hash` | No |  |
-| `geometry` | `Hash` | No |  |
-| `record_timestamp` | `String` | No |  |
-| `recordid` | `String` | No |  |
+| `geometry` | `Hash` | No | GeoJSON geometry object |
+| `record_timestamp` | `String` | No | Timestamp of record creation or update |
+| `recordid` | `String` | No | Unique record identifier |
 
 ### Operations
 

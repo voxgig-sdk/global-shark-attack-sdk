@@ -106,8 +106,8 @@ fmt.Println(analyze.GetName()) // "analyze"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | `string` | No |  |
-| `y` | `float64` | No |  |
+| `x` | `string` | No | X-axis value |
+| `y` | `float64` | No | Aggregated Y-axis value |
 
 ### Operations
 
@@ -158,11 +158,11 @@ fmt.Println(download.GetName()) // "download"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `map[string]any` | No |  |
-| `geometry` | `map[string]any` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `map[string]any` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 
@@ -213,11 +213,11 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `map[string]any` | No |  |
-| `geometry` | `map[string]any` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `map[string]any` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 

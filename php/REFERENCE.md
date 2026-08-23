@@ -100,8 +100,8 @@ $analyze = $client->Analyze();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `x` | `string` | No |  |
-| `y` | `float` | No |  |
+| `x` | `string` | No | X-axis value |
+| `y` | `float` | No | Aggregated Y-axis value |
 
 ### Operations
 
@@ -153,11 +153,11 @@ $download = $client->Download();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `array` | No |  |
-| `geometry` | `array` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `array` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 
@@ -209,11 +209,11 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `array` | No |  |
-| `geometry` | `array` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `array` | No | GeoJSON geometry object |
+| `record_timestamp` | `string` | No | Timestamp of record creation or update |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 

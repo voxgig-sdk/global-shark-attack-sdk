@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -289,8 +289,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `x` |  |
-| `y` |  |
+| `x` | X-axis value |
+| `y` | Aggregated Y-axis value |
 
 Operations: list.
 
@@ -300,11 +300,11 @@ API path: `/analyze`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: list.
 
@@ -314,11 +314,11 @@ API path: `/download`
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry object |
+| `record_timestamp` | Timestamp of record creation or update |
+| `recordid` | Unique record identifier |
 
 Operations: list.
 
@@ -343,8 +343,8 @@ Create an instance: `const analyze = client.Analyze()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `x` | `string` |  |
-| `y` | `number` |  |
+| `x` | `string` | X-axis value |
+| `y` | `number` | Aggregated Y-axis value |
 
 #### Example: List
 
@@ -367,11 +367,11 @@ Create an instance: `const download = client.Download()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `Record<string, any>` |  |
-| `geometry` | `Record<string, any>` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `Record<string, any>` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 
@@ -394,11 +394,11 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `Record<string, any>` |  |
-| `geometry` | `Record<string, any>` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `Record<string, any>` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 

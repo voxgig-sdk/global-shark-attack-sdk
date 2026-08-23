@@ -33,6 +33,9 @@ class GlobalSharkAttackConfig
         return [
             "main" => [
                 "name" => "GlobalSharkAttack",
+                "slug" => "global-shark-attack",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -57,10 +60,12 @@ class GlobalSharkAttackConfig
           'fields' => [
             [
               'name' => 'x',
+              'short' => 'X-axis value',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'y',
+              'short' => 'Aggregated Y-axis value',
               'type' => '`$NUMBER`',
             ],
           ],
@@ -146,6 +151,7 @@ class GlobalSharkAttackConfig
           'fields' => [
             [
               'name' => 'datasetid',
+              'short' => 'Dataset identifier',
               'type' => '`$STRING`',
             ],
             [
@@ -154,14 +160,17 @@ class GlobalSharkAttackConfig
             ],
             [
               'name' => 'geometry',
+              'short' => 'GeoJSON geometry object',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'record_timestamp',
+              'short' => 'Timestamp of record creation or update',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'recordid',
+              'short' => 'Unique record identifier',
               'type' => '`$STRING`',
             ],
           ],
@@ -233,6 +242,7 @@ class GlobalSharkAttackConfig
           'fields' => [
             [
               'name' => 'datasetid',
+              'short' => 'Dataset identifier',
               'type' => '`$STRING`',
             ],
             [
@@ -241,14 +251,17 @@ class GlobalSharkAttackConfig
             ],
             [
               'name' => 'geometry',
+              'short' => 'GeoJSON geometry object',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'record_timestamp',
+              'short' => 'Timestamp of record creation or update',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'recordid',
+              'short' => 'Unique record identifier',
               'type' => '`$STRING`',
             ],
           ],

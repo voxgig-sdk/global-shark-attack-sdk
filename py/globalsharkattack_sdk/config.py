@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "GlobalSharkAttack",
+            "slug": "global-shark-attack",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -52,10 +55,12 @@ def make_config():
         "fields": [
           {
             "name": "x",
+            "short": "X-axis value",
             "type": "`$STRING`",
           },
           {
             "name": "y",
+            "short": "Aggregated Y-axis value",
             "type": "`$NUMBER`",
           },
         ],
@@ -141,6 +146,7 @@ def make_config():
         "fields": [
           {
             "name": "datasetid",
+            "short": "Dataset identifier",
             "type": "`$STRING`",
           },
           {
@@ -149,14 +155,17 @@ def make_config():
           },
           {
             "name": "geometry",
+            "short": "GeoJSON geometry object",
             "type": "`$OBJECT`",
           },
           {
             "name": "record_timestamp",
+            "short": "Timestamp of record creation or update",
             "type": "`$STRING`",
           },
           {
             "name": "recordid",
+            "short": "Unique record identifier",
             "type": "`$STRING`",
           },
         ],
@@ -228,6 +237,7 @@ def make_config():
         "fields": [
           {
             "name": "datasetid",
+            "short": "Dataset identifier",
             "type": "`$STRING`",
           },
           {
@@ -236,14 +246,17 @@ def make_config():
           },
           {
             "name": "geometry",
+            "short": "GeoJSON geometry object",
             "type": "`$OBJECT`",
           },
           {
             "name": "record_timestamp",
+            "short": "Timestamp of record creation or update",
             "type": "`$STRING`",
           },
           {
             "name": "recordid",
+            "short": "Unique record identifier",
             "type": "`$STRING`",
           },
         ],

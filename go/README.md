@@ -6,7 +6,7 @@ The Golang SDK for the GlobalSharkAttack API — an entity-oriented client using
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Analyze(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -262,8 +262,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"x"` |  |
-| `"y"` |  |
+| `"x"` | X-axis value |
+| `"y"` | Aggregated Y-axis value |
 
 Operations: List.
 
@@ -273,11 +273,11 @@ API path: `/analyze`
 
 | Field | Description |
 | --- | --- |
-| `"datasetid"` |  |
+| `"datasetid"` | Dataset identifier |
 | `"fields"` |  |
-| `"geometry"` |  |
-| `"record_timestamp"` |  |
-| `"recordid"` |  |
+| `"geometry"` | GeoJSON geometry object |
+| `"record_timestamp"` | Timestamp of record creation or update |
+| `"recordid"` | Unique record identifier |
 
 Operations: List.
 
@@ -287,11 +287,11 @@ API path: `/download`
 
 | Field | Description |
 | --- | --- |
-| `"datasetid"` |  |
+| `"datasetid"` | Dataset identifier |
 | `"fields"` |  |
-| `"geometry"` |  |
-| `"record_timestamp"` |  |
-| `"recordid"` |  |
+| `"geometry"` | GeoJSON geometry object |
+| `"record_timestamp"` | Timestamp of record creation or update |
+| `"recordid"` | Unique record identifier |
 
 Operations: List.
 
@@ -316,8 +316,8 @@ Create an instance: `analyze := client.Analyze(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `x` | `string` |  |
-| `y` | `float64` |  |
+| `x` | `string` | X-axis value |
+| `y` | `float64` | Aggregated Y-axis value |
 
 #### Example: List
 
@@ -344,11 +344,11 @@ Create an instance: `download := client.Download(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `map[string]any` |  |
-| `geometry` | `map[string]any` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `map[string]any` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 
@@ -375,11 +375,11 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `map[string]any` |  |
-| `geometry` | `map[string]any` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `map[string]any` | GeoJSON geometry object |
+| `record_timestamp` | `string` | Timestamp of record creation or update |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: List
 

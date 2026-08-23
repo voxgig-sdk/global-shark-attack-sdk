@@ -8,6 +8,7 @@ main: kit: entity: download: {
     {
       name: "datasetid"
       req: false
+      short: "Dataset identifier"
       type: "`$STRING`"
     }
     {
@@ -18,16 +19,19 @@ main: kit: entity: download: {
     {
       name: "geometry"
       req: false
+      short: "GeoJSON geometry object"
       type: "`$OBJECT`"
     }
     {
       name: "record_timestamp"
       req: false
+      short: "Timestamp of record creation or update"
       type: "`$STRING`"
     }
     {
       name: "recordid"
       req: false
+      short: "Unique record identifier"
       type: "`$STRING`"
     }
   ]
