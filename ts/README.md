@@ -40,7 +40,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const analyzes = await client.Analyze().list()
+const analyzes = await client.Analyze().list({ dataset: "example" })
 
 for (const analyze of analyzes) {
   console.log(analyze)
@@ -349,7 +349,7 @@ Create an instance: `const analyze = client.Analyze()`
 #### Example: List
 
 ```ts
-const analyzes = await client.Analyze().list()
+const analyzes = await client.Analyze().list({ dataset: "example" })
 ```
 
 
@@ -376,7 +376,7 @@ Create an instance: `const download = client.Download()`
 #### Example: List
 
 ```ts
-const downloads = await client.Download().list()
+const downloads = await client.Download().list({ dataset: "example" })
 ```
 
 
@@ -403,8 +403,31 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.Search().list({ dataset: "example" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

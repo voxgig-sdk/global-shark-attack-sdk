@@ -23,12 +23,28 @@ Analyze = Struct.new(
 
 # Request payload for Analyze#list.
 #
+# @!attribute [rw] dataset
+#   @return [String]
+#
+# @!attribute [rw] func
+#   @return [String, nil]
+#
+# @!attribute [rw] refine_country
+#   @return [String, nil]
+#
+# @!attribute [rw] refine_type
+#   @return [String, nil]
+#
 # @!attribute [rw] x
 #   @return [String, nil]
 #
 # @!attribute [rw] y
-#   @return [Float, nil]
+#   @return [String, nil]
 AnalyzeListMatch = Struct.new(
+  :dataset,
+  :func,
+  :refine_country,
+  :refine_type,
   :x,
   :y,
   keyword_init: true
@@ -61,26 +77,22 @@ Download = Struct.new(
 
 # Request payload for Download#list.
 #
-# @!attribute [rw] datasetid
+# @!attribute [rw] dataset
+#   @return [String]
+#
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] fields
-#   @return [Hash, nil]
-#
-# @!attribute [rw] geometry
-#   @return [Hash, nil]
-#
-# @!attribute [rw] record_timestamp
+# @!attribute [rw] refine_country
 #   @return [String, nil]
 #
-# @!attribute [rw] recordid
+# @!attribute [rw] refine_type
 #   @return [String, nil]
 DownloadListMatch = Struct.new(
-  :datasetid,
-  :fields,
-  :geometry,
-  :record_timestamp,
-  :recordid,
+  :dataset,
+  :format,
+  :refine_country,
+  :refine_type,
   keyword_init: true
 )
 
@@ -111,26 +123,46 @@ Search = Struct.new(
 
 # Request payload for Search#list.
 #
-# @!attribute [rw] datasetid
+# @!attribute [rw] dataset
+#   @return [String]
+#
+# @!attribute [rw] facet
+#   @return [Array, nil]
+#
+# @!attribute [rw] q
 #   @return [String, nil]
 #
-# @!attribute [rw] fields
-#   @return [Hash, nil]
-#
-# @!attribute [rw] geometry
-#   @return [Hash, nil]
-#
-# @!attribute [rw] record_timestamp
+# @!attribute [rw] refine_activity
 #   @return [String, nil]
 #
-# @!attribute [rw] recordid
+# @!attribute [rw] refine_country
 #   @return [String, nil]
+#
+# @!attribute [rw] refine_species
+#   @return [String, nil]
+#
+# @!attribute [rw] refine_type
+#   @return [String, nil]
+#
+# @!attribute [rw] row
+#   @return [Integer, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [Integer, nil]
 SearchListMatch = Struct.new(
-  :datasetid,
-  :fields,
-  :geometry,
-  :record_timestamp,
-  :recordid,
+  :dataset,
+  :facet,
+  :q,
+  :refine_activity,
+  :refine_country,
+  :refine_species,
+  :refine_type,
+  :row,
+  :sort,
+  :start,
   keyword_init: true
 )
 

@@ -22,8 +22,12 @@ class Analyze
 /** Request payload for Analyze#list. */
 class AnalyzeListMatch
 {
+    public string $dataset;
+    public ?string $func = null;
+    public ?string $refine_country = null;
+    public ?string $refine_type = null;
     public ?string $x = null;
-    public ?float $y = null;
+    public ?string $y = null;
 }
 
 /** Download entity data model. */
@@ -39,11 +43,10 @@ class Download
 /** Request payload for Download#list. */
 class DownloadListMatch
 {
-    public ?string $datasetid = null;
-    public ?array $fields = null;
-    public ?array $geometry = null;
-    public ?string $record_timestamp = null;
-    public ?string $recordid = null;
+    public string $dataset;
+    public ?string $format = null;
+    public ?string $refine_country = null;
+    public ?string $refine_type = null;
 }
 
 /** Search entity data model. */
@@ -59,10 +62,15 @@ class Search
 /** Request payload for Search#list. */
 class SearchListMatch
 {
-    public ?string $datasetid = null;
-    public ?array $fields = null;
-    public ?array $geometry = null;
-    public ?string $record_timestamp = null;
-    public ?string $recordid = null;
+    public string $dataset;
+    public ?array $facet = null;
+    public ?string $q = null;
+    public ?string $refine_activity = null;
+    public ?string $refine_country = null;
+    public ?string $refine_species = null;
+    public ?string $refine_type = null;
+    public ?int $row = null;
+    public ?string $sort = null;
+    public ?int $start = null;
 }
 

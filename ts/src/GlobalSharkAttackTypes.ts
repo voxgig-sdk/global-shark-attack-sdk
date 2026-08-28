@@ -11,8 +11,12 @@ export interface Analyze {
 }
 
 export interface AnalyzeListMatch {
+  dataset: string
+  func?: string
+  refine_country?: string
+  refine_type?: string
   x?: string
-  y?: number
+  y?: string
 }
 
 export interface Download {
@@ -24,11 +28,10 @@ export interface Download {
 }
 
 export interface DownloadListMatch {
-  datasetid?: string
-  fields?: Record<string, any>
-  geometry?: Record<string, any>
-  record_timestamp?: string
-  recordid?: string
+  dataset: string
+  format?: string
+  refine_country?: string
+  refine_type?: string
 }
 
 export interface Search {
@@ -40,10 +43,15 @@ export interface Search {
 }
 
 export interface SearchListMatch {
-  datasetid?: string
-  fields?: Record<string, any>
-  geometry?: Record<string, any>
-  record_timestamp?: string
-  recordid?: string
+  dataset: string
+  facet?: any[]
+  q?: string
+  refine_activity?: string
+  refine_country?: string
+  refine_species?: string
+  refine_type?: string
+  row?: number
+  sort?: string
+  start?: number
 }
 

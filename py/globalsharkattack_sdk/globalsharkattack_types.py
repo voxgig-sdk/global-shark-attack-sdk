@@ -21,9 +21,16 @@ class Analyze(TypedDict, total=False):
     y: float
 
 
-class AnalyzeListMatch(TypedDict, total=False):
+class AnalyzeListMatchRequired(TypedDict):
+    dataset: str
+
+
+class AnalyzeListMatch(AnalyzeListMatchRequired, total=False):
+    func: str
+    refine_country: str
+    refine_type: str
     x: str
-    y: float
+    y: str
 
 
 class Download(TypedDict, total=False):
@@ -34,12 +41,14 @@ class Download(TypedDict, total=False):
     recordid: str
 
 
-class DownloadListMatch(TypedDict, total=False):
-    datasetid: str
-    fields: dict
-    geometry: dict
-    record_timestamp: str
-    recordid: str
+class DownloadListMatchRequired(TypedDict):
+    dataset: str
+
+
+class DownloadListMatch(DownloadListMatchRequired, total=False):
+    format: str
+    refine_country: str
+    refine_type: str
 
 
 class Search(TypedDict, total=False):
@@ -50,9 +59,17 @@ class Search(TypedDict, total=False):
     recordid: str
 
 
-class SearchListMatch(TypedDict, total=False):
-    datasetid: str
-    fields: dict
-    geometry: dict
-    record_timestamp: str
-    recordid: str
+class SearchListMatchRequired(TypedDict):
+    dataset: str
+
+
+class SearchListMatch(SearchListMatchRequired, total=False):
+    facet: list
+    q: str
+    refine_activity: str
+    refine_country: str
+    refine_species: str
+    refine_type: str
+    row: int
+    sort: str
+    start: int

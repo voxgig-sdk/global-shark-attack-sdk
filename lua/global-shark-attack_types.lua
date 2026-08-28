@@ -11,8 +11,12 @@
 ---@field y? number
 
 ---@class AnalyzeListMatch
+---@field dataset string
+---@field func? string
+---@field refine_country? string
+---@field refine_type? string
 ---@field x? string
----@field y? number
+---@field y? string
 
 ---@class Download
 ---@field datasetid? string
@@ -22,11 +26,10 @@
 ---@field recordid? string
 
 ---@class DownloadListMatch
----@field datasetid? string
----@field fields? table
----@field geometry? table
----@field record_timestamp? string
----@field recordid? string
+---@field dataset string
+---@field format? string
+---@field refine_country? string
+---@field refine_type? string
 
 ---@class Search
 ---@field datasetid? string
@@ -36,11 +39,16 @@
 ---@field recordid? string
 
 ---@class SearchListMatch
----@field datasetid? string
----@field fields? table
----@field geometry? table
----@field record_timestamp? string
----@field recordid? string
+---@field dataset string
+---@field facet? table
+---@field q? string
+---@field refine_activity? string
+---@field refine_country? string
+---@field refine_species? string
+---@field refine_type? string
+---@field row? number
+---@field sort? string
+---@field start? number
 
 local M = {}
 

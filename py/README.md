@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    analyzes = client.Analyze().list()
+    analyzes = client.Analyze().list({"dataset": "example"})
     for analyze in analyzes:
         print(analyze)
 except Exception as err:
@@ -305,7 +305,7 @@ Create an instance: `analyze = client.Analyze()`
 #### Example: List
 
 ```python
-analyzes = client.Analyze().list()
+analyzes = client.Analyze().list({"dataset": "example"})
 ```
 
 
@@ -332,7 +332,7 @@ Create an instance: `download = client.Download()`
 #### Example: List
 
 ```python
-downloads = client.Download().list()
+downloads = client.Download().list({"dataset": "example"})
 ```
 
 
@@ -359,8 +359,31 @@ Create an instance: `search = client.Search()`
 #### Example: List
 
 ```python
-searchs = client.Search().list()
+searchs = client.Search().list({"dataset": "example"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

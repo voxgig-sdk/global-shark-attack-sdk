@@ -20,8 +20,12 @@ type Analyze struct {
 
 // AnalyzeListMatch is the typed request payload for Analyze.ListTyped.
 type AnalyzeListMatch struct {
+	Dataset string `json:"dataset"`
+	Func *string `json:"func,omitempty"`
+	RefineCountry *string `json:"refine_country,omitempty"`
+	RefineType *string `json:"refine_type,omitempty"`
 	X *string `json:"x,omitempty"`
-	Y *float64 `json:"y,omitempty"`
+	Y *string `json:"y,omitempty"`
 }
 
 // Download is the typed data model for the download entity.
@@ -35,11 +39,10 @@ type Download struct {
 
 // DownloadListMatch is the typed request payload for Download.ListTyped.
 type DownloadListMatch struct {
-	Datasetid *string `json:"datasetid,omitempty"`
-	Fields *map[string]any `json:"fields,omitempty"`
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	RecordTimestamp *string `json:"record_timestamp,omitempty"`
-	Recordid *string `json:"recordid,omitempty"`
+	Dataset string `json:"dataset"`
+	Format *string `json:"format,omitempty"`
+	RefineCountry *string `json:"refine_country,omitempty"`
+	RefineType *string `json:"refine_type,omitempty"`
 }
 
 // Search is the typed data model for the search entity.
@@ -53,11 +56,16 @@ type Search struct {
 
 // SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
-	Datasetid *string `json:"datasetid,omitempty"`
-	Fields *map[string]any `json:"fields,omitempty"`
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	RecordTimestamp *string `json:"record_timestamp,omitempty"`
-	Recordid *string `json:"recordid,omitempty"`
+	Dataset string `json:"dataset"`
+	Facet *[]any `json:"facet,omitempty"`
+	Q *string `json:"q,omitempty"`
+	RefineActivity *string `json:"refine_activity,omitempty"`
+	RefineCountry *string `json:"refine_country,omitempty"`
+	RefineSpecies *string `json:"refine_species,omitempty"`
+	RefineType *string `json:"refine_type,omitempty"`
+	Row *int `json:"row,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Start *int `json:"start,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
