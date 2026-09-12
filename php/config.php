@@ -123,8 +123,10 @@ class GlobalSharkAttackConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/analyze',
-                  'parts' => [
-                    'analyze',
+                  'segments' => [
+                    [
+                      'lit' => 'analyze',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -139,6 +141,9 @@ class GlobalSharkAttackConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'analyze',
                   ],
                 ],
               ],
@@ -165,6 +170,7 @@ class GlobalSharkAttackConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'record_timestamp',
               'short' => 'Timestamp of record creation or update',
               'type' => '`$STRING`',
@@ -216,8 +222,10 @@ class GlobalSharkAttackConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/download',
-                  'parts' => [
-                    'download',
+                  'segments' => [
+                    [
+                      'lit' => 'download',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -230,6 +238,9 @@ class GlobalSharkAttackConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'download',
                   ],
                 ],
               ],
@@ -256,6 +267,7 @@ class GlobalSharkAttackConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'record_timestamp',
               'short' => 'Timestamp of record creation or update',
               'type' => '`$STRING`',
@@ -344,8 +356,10 @@ class GlobalSharkAttackConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
-                  'parts' => [
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -364,6 +378,9 @@ class GlobalSharkAttackConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'search',
                   ],
                 ],
               ],

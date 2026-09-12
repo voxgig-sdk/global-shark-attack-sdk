@@ -23,6 +23,7 @@ main: kit: entity: download: {
       type: "`$OBJECT`"
     }
     {
+      format: "date-time"
       name: "record_timestamp"
       req: false
       short: "Timestamp of record creation or update"
@@ -78,8 +79,10 @@ main: kit: entity: download: {
           }
           method: "GET"
           orig: "/download"
-          parts: [
-            "download"
+          segments: [
+            {
+              lit: "download"
+            }
           ]
           select: {
             exist: [

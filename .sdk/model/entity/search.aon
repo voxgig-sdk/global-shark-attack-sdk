@@ -23,6 +23,7 @@ main: kit: entity: search: {
       type: "`$OBJECT`"
     }
     {
+      format: "date-time"
       name: "record_timestamp"
       req: false
       short: "Timestamp of record creation or update"
@@ -121,8 +122,10 @@ main: kit: entity: search: {
           }
           method: "GET"
           orig: "/search"
-          parts: [
-            "search"
+          segments: [
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [

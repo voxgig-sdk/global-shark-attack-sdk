@@ -109,8 +109,10 @@ module GlobalSharkAttackConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/analyze",
-                  "parts" => [
-                    "analyze",
+                  "segments" => [
+                    {
+                      "lit" => "analyze",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -126,6 +128,9 @@ module GlobalSharkAttackConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "analyze",
+                  ],
                 },
               ],
             },
@@ -151,6 +156,7 @@ module GlobalSharkAttackConfig
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "date-time",
               "name" => "record_timestamp",
               "short" => "Timestamp of record creation or update",
               "type" => "`$STRING`",
@@ -202,8 +208,10 @@ module GlobalSharkAttackConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/download",
-                  "parts" => [
-                    "download",
+                  "segments" => [
+                    {
+                      "lit" => "download",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -217,6 +225,9 @@ module GlobalSharkAttackConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "download",
+                  ],
                 },
               ],
             },
@@ -242,6 +253,7 @@ module GlobalSharkAttackConfig
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "date-time",
               "name" => "record_timestamp",
               "short" => "Timestamp of record creation or update",
               "type" => "`$STRING`",
@@ -330,8 +342,10 @@ module GlobalSharkAttackConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search",
-                  "parts" => [
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -351,6 +365,9 @@ module GlobalSharkAttackConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "search",
+                  ],
                 },
               ],
             },

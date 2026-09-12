@@ -97,8 +97,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/analyze",
-                ["parts"] = {
-                  "analyze",
+                ["segments"] = {
+                  {
+                    ["lit"] = "analyze",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -113,6 +115,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "analyze",
                 },
               },
             },
@@ -139,6 +144,7 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "record_timestamp",
             ["short"] = "Timestamp of record creation or update",
             ["type"] = "`$STRING`",
@@ -190,8 +196,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/download",
-                ["parts"] = {
-                  "download",
+                ["segments"] = {
+                  {
+                    ["lit"] = "download",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -204,6 +212,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "download",
                 },
               },
             },
@@ -230,6 +241,7 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "record_timestamp",
             ["short"] = "Timestamp of record creation or update",
             ["type"] = "`$STRING`",
@@ -318,8 +330,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search",
-                ["parts"] = {
-                  "search",
+                ["segments"] = {
+                  {
+                    ["lit"] = "search",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -338,6 +352,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "search",
                 },
               },
             },
