@@ -105,7 +105,7 @@ local results, err = client:Download():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
+| TypeScript | `@voxgig-sdk/global-shark-attack-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
 | Python | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
 | PHP | `voxgig-sdk/global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/global-shark-attack-sdk/go` | `go get github.com/voxgig-sdk/global-shark-attack-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Download():list()
 ### TypeScript
 
 ```ts
-import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack'
+import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack-sdk'
 
 const client = new GlobalSharkAttackSDK()
 

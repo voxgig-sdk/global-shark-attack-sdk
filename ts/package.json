@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/global-shark-attack",
+  "name": "@voxgig-sdk/global-shark-attack-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Global Shark Attack public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

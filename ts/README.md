@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack'
+import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack-sdk'
 
 const client = new GlobalSharkAttackSDK()
 ```
@@ -489,7 +489,7 @@ global-shark-attack/
 Import the SDK from the package root:
 
 ```ts
-import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack'
+import { GlobalSharkAttackSDK } from '@voxgig-sdk/global-shark-attack-sdk'
 ```
 
 ### Entity state
