@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.GLOBAL_SHARK_ATTACK_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'analyze.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'analyze.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set GLOBAL_SHARK_ATTACK_TEST_ANALYZE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "x", "req": false, "short": "X-axis value", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "y", "req": false, "short": "Aggregated Y-axis value", "type": "`$NUMBER`", "index$": 1 }], "name": "analyze", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": "global-shark-attack", "kind": "query", "name": "dataset", "orig": "dataset", "reqd": true, "type": "`$STRING`", "index$": 0 }, { "active": true, "example": "COUNT", "kind": "query", "name": "func", "orig": "func", "reqd": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "kind": "query", "name": "refine_country", "orig": "refine_country", "reqd": false, "type": "`$STRING`", "index$": 2 }, { "active": true, "kind": "query", "name": "refine_type", "orig": "refine_type", "reqd": false, "type": "`$STRING`", "index$": 3 }, { "active": true, "kind": "query", "name": "x", "orig": "x", "reqd": false, "type": "`$STRING`", "index$": 4 }, { "active": true, "kind": "query", "name": "y", "orig": "y", "reqd": false, "type": "`$STRING`", "index$": 5 }] }, "contract": { "id": "GET /analyze", "json": "{\"operationId\":\"analyzeData\",\"parameters\":[{\"description\":\"Dataset identifier\",\"in\":\"query\",\"name\":\"dataset\",\"required\":true,\"schema\":{\"default\":\"global-shark-attack\",\"type\":\"string\"}},{\"description\":\"Field name for X-axis aggregation\",\"in\":\"query\",\"name\":\"x\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Field name for Y-axis aggregation\",\"in\":\"query\",\"name\":\"y\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Aggregation function to apply\",\"in\":\"query\",\"name\":\"func\",\"schema\":{\"default\":\"COUNT\",\"enum\":[\"COUNT\",\"AVG\",\"SUM\",\"MIN\",\"MAX\"],\"type\":\"string\"}},{\"description\":\"Filter by incident type\",\"in\":\"query\",\"name\":\"refine.type\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by country\",\"in\":\"query\",\"name\":\"refine.country\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"x\":{\"description\":\"X-axis value\",\"type\":\"string\"},\"y\":{\"description\":\"Aggregated Y-axis value\",\"type\":\"number\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful analysis\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"error_code\":{\"description\":\"Error code\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/analyze", "segments": [{ "lit": "analyze" }], "select": { "exist": ["dataset", "func", "refine_country", "refine_type", "x", "y"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "analyze", "name__orig": "analyze", "Name": "Analyze", "name_": "analyze", "name-": "analyze", "NAME": "ANALYZE", "index$": 0 }, { "active": true, "entity": "analyze", "key$": "BasicAnalyzeFlow", "kind": "basic", "name": "BasicAnalyzeFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "analyze_ref01" } }], "index$": 0 }] }, 'Analyze');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['GLOBAL_SHARK_ATTACK_TEST_ANALYZE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'GLOBAL_SHARK_ATTACK_TEST_ANALYZE_ENTID': idmap,
         'GLOBAL_SHARK_ATTACK_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['GLOBAL_SHARK_ATTACK_TEST_ANALYZE_ENTID'];
     const live = 'TRUE' === env.GLOBAL_SHARK_ATTACK_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['GLOBAL_SHARK_ATTACK_TEST_ANALYZE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.GlobalSharkAttackSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.GLOBAL_SHARK_ATTACK_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

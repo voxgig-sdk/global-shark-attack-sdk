@@ -73,6 +73,12 @@ main: kit: entity: analyze: {
               }
             ]
           }
+          contract: {
+            id: "GET /analyze"
+            json: "{\"operationId\":\"analyzeData\",\"parameters\":[{\"description\":\"Dataset identifier\",\"in\":\"query\",\"name\":\"dataset\",\"required\":true,\"schema\":{\"default\":\"global-shark-attack\",\"type\":\"string\"}},{\"description\":\"Field name for X-axis aggregation\",\"in\":\"query\",\"name\":\"x\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Field name for Y-axis aggregation\",\"in\":\"query\",\"name\":\"y\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Aggregation function to apply\",\"in\":\"query\",\"name\":\"func\",\"schema\":{\"default\":\"COUNT\",\"enum\":[\"COUNT\",\"AVG\",\"SUM\",\"MIN\",\"MAX\"],\"type\":\"string\"}},{\"description\":\"Filter by incident type\",\"in\":\"query\",\"name\":\"refine.type\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by country\",\"in\":\"query\",\"name\":\"refine.country\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"x\":{\"description\":\"X-axis value\",\"type\":\"string\"},\"y\":{\"description\":\"Aggregated Y-axis value\",\"type\":\"number\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful analysis\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"error_code\":{\"description\":\"Error code\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/analyze"
           segments: [

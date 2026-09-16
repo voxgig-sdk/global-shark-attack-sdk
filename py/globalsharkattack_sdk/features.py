@@ -1,12 +1,18 @@
 # GlobalSharkAttack SDK feature factory
 
 from globalsharkattack_sdk.feature.base_feature import GlobalSharkAttackBaseFeature
+from globalsharkattack_sdk.feature.ratelimit_feature import GlobalSharkAttackRatelimitFeature
+from globalsharkattack_sdk.feature.retry_feature import GlobalSharkAttackRetryFeature
 from globalsharkattack_sdk.feature.test_feature import GlobalSharkAttackTestFeature
+from globalsharkattack_sdk.feature.timeout_feature import GlobalSharkAttackTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: GlobalSharkAttackBaseFeature(),
+    "ratelimit": lambda: GlobalSharkAttackRatelimitFeature(),
+    "retry": lambda: GlobalSharkAttackRetryFeature(),
     "test": lambda: GlobalSharkAttackTestFeature(),
+    "timeout": lambda: GlobalSharkAttackTimeoutFeature(),
 }
 
 

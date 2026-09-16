@@ -34,5 +34,344 @@
         "recordid": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchRecords",
+        "parameters": [
+          {
+            "description": "Dataset identifier",
+            "in": "query",
+            "name": "dataset",
+            "required": true,
+            "schema": {
+              "default": "global-shark-attack",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Full-text search query",
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of records to return (max 100)",
+            "in": "query",
+            "name": "rows",
+            "schema": {
+              "default": 10,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Index of the first record to return (for pagination)",
+            "in": "query",
+            "name": "start",
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Field name to sort by (prefix with - for descending order)",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by incident type (unprovoked, provoked, boat, war, questionable)",
+            "in": "query",
+            "name": "refine.type",
+            "schema": {
+              "enum": [
+                "Unprovoked",
+                "Provoked",
+                "Boat",
+                "War",
+                "Questionable"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by country where incident occurred",
+            "in": "query",
+            "name": "refine.country",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by shark species",
+            "in": "query",
+            "name": "refine.species",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by victim activity at time of incident",
+            "in": "query",
+            "name": "refine.activity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Field names to facet on (can be repeated)",
+            "explode": true,
+            "in": "query",
+            "name": "facet",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "facet_groups": {
+                      "description": "Facet aggregations if requested",
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "nhits": {
+                      "description": "Total number of records matching the query",
+                      "type": "integer"
+                    },
+                    "parameters": {
+                      "description": "Echo of the request parameters",
+                      "type": "object"
+                    },
+                    "records": {
+                      "items": {
+                        "properties": {
+                          "datasetid": {
+                            "description": "Dataset identifier",
+                            "type": "string"
+                          },
+                          "fields": {
+                            "properties": {
+                              "activity": {
+                                "description": "Activity victim was engaged in at time of incident",
+                                "type": "string"
+                              },
+                              "age": {
+                                "description": "Age of the victim",
+                                "type": "string"
+                              },
+                              "area": {
+                                "description": "Specific area or region within country",
+                                "type": "string"
+                              },
+                              "case_number": {
+                                "description": "Unique case number for the incident",
+                                "type": "string"
+                              },
+                              "case_number_1": {
+                                "description": "Alternative case number",
+                                "type": "string"
+                              },
+                              "case_number_2": {
+                                "description": "Secondary case number",
+                                "type": "string"
+                              },
+                              "country": {
+                                "description": "Country where incident occurred",
+                                "type": "string"
+                              },
+                              "date": {
+                                "description": "Date of the incident",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "fatal": {
+                                "description": "Whether the incident was fatal",
+                                "enum": [
+                                  "Y",
+                                  "N",
+                                  "UNKNOWN"
+                                ],
+                                "type": "string"
+                              },
+                              "geopoint": {
+                                "description": "Geographic coordinates [latitude, longitude]",
+                                "items": {
+                                  "type": "number"
+                                },
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "type": "array"
+                              },
+                              "href": {
+                                "description": "Reference link",
+                                "type": "string"
+                              },
+                              "href_formula": {
+                                "description": "Link to additional information",
+                                "type": "string"
+                              },
+                              "injury": {
+                                "description": "Description of injuries sustained",
+                                "type": "string"
+                              },
+                              "investigator_or_source": {
+                                "description": "Source of the incident report",
+                                "type": "string"
+                              },
+                              "location": {
+                                "description": "Detailed location description",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Name of the victim",
+                                "type": "string"
+                              },
+                              "original_order": {
+                                "description": "Original ordering in dataset",
+                                "type": "integer"
+                              },
+                              "pdf": {
+                                "description": "URL to PDF report if available",
+                                "type": "string"
+                              },
+                              "sex": {
+                                "description": "Sex of the victim",
+                                "enum": [
+                                  "M",
+                                  "F"
+                                ],
+                                "type": "string"
+                              },
+                              "species": {
+                                "description": "Species of shark involved",
+                                "type": "string"
+                              },
+                              "time": {
+                                "description": "Time of day the incident occurred",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Type of incident",
+                                "enum": [
+                                  "Unprovoked",
+                                  "Provoked",
+                                  "Boat",
+                                  "War",
+                                  "Questionable"
+                                ],
+                                "type": "string"
+                              },
+                              "year": {
+                                "description": "Year of the incident",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "geometry": {
+                            "description": "GeoJSON geometry object",
+                            "properties": {
+                              "coordinates": {
+                                "items": {
+                                  "type": "number"
+                                },
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "type": "array"
+                              },
+                              "type": {
+                                "enum": [
+                                  "Point"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "record_timestamp": {
+                            "description": "Timestamp of record creation or update",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "recordid": {
+                            "description": "Unique record identifier",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with shark attack records"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "description": "Error code",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "description": "Error code",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Dataset not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
