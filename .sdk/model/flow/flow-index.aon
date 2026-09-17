@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicAnalyzeFlow.aon"
-@"BasicDownloadFlow.aon"
-@"BasicSearchFlow.aon"
+@"./BasicAnalyzeFlow.aon"
+@"./BasicDownloadFlow.aon"
+@"./BasicSearchFlow.aon"

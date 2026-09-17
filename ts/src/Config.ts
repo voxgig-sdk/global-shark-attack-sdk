@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      analyze: {
-      },
-
-      download: {
-      },
-
-      search: {
-      },
-
+        analyze: {
+        },
+  
+        download: {
+        },
+  
+        search: {
+        },
+  
     }
   }
 

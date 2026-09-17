@@ -105,12 +105,12 @@ local results, err = client:Download():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/global-shark-attack-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
-| Python | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
-| PHP | `voxgig-sdk/global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
+| TypeScript | `@voxgig-sdk/global-shark-attack-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/tags) |
+| Python | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/tags) |
+| PHP | `voxgig-sdk/global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/global-shark-attack-sdk/go` | `go get github.com/voxgig-sdk/global-shark-attack-sdk/go@latest` |
-| Ruby | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
-| Lua | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/releases) |
+| Ruby | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/tags) |
+| Lua | `voxgig-sdk-global-shark-attack` | publish pending — [install from git tag](https://github.com/voxgig-sdk/global-shark-attack-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/global-shark-attack-sdk/go-cli` | `go install github.com/voxgig-sdk/global-shark-attack-sdk/go-cli/cmd/global-shark-attack@latest` |
 | Go MCP server | `github.com/voxgig-sdk/global-shark-attack-sdk/go-mcp` | `go get github.com/voxgig-sdk/global-shark-attack-sdk/go-mcp@latest` |
 
