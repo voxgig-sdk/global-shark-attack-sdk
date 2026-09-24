@@ -19,7 +19,6 @@ import type {
   SearchListMatch,
 } from '../GlobalSharkAttackTypes'
 
-// TODO: needs Entity superclass
 class SearchEntity extends GlobalSharkAttackEntityBase<Search> {
 
   constructor(client: GlobalSharkAttackSDK, entopts: any) {

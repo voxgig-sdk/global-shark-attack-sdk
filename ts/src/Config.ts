@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -145,13 +138,15 @@ class Config {
       "fields": [
         {
           "name": "x",
-          "short": "X-axis value",
-          "type": "`$STRING`"
+          "title": "X",
+          "type": "`$STRING`",
+          "short": "X-axis value"
         },
         {
           "name": "y",
-          "short": "Aggregated Y-axis value",
-          "type": "`$NUMBER`"
+          "title": "Y",
+          "type": "`$NUMBER`",
+          "short": "Aggregated Y-axis value"
         }
       ],
       "name": "analyze",
@@ -161,49 +156,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "global-shark-attack",
-                    "kind": "query",
-                    "name": "dataset",
-                    "orig": "dataset",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "COUNT",
-                    "kind": "query",
-                    "name": "func",
-                    "orig": "func",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_country",
-                    "orig": "refine_country",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_type",
-                    "orig": "refine_type",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "x",
-                    "orig": "x",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "y",
-                    "orig": "y",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/analyze",
@@ -212,6 +164,57 @@ class Config {
                   "lit": "analyze"
                 }
               ],
+              "parts": [
+                "analyze"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "dataset",
+                    "orig": "dataset",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "global-shark-attack"
+                  },
+                  {
+                    "name": "func",
+                    "orig": "func",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "COUNT"
+                  },
+                  {
+                    "name": "refine_country",
+                    "orig": "refine_country",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "refine_type",
+                    "orig": "refine_type",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "x",
+                    "orig": "x",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "y",
+                    "orig": "y",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "dataset",
@@ -221,14 +224,7 @@ class Config {
                   "x",
                   "y"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "analyze"
-              ]
+              }
             }
           ]
         }
@@ -241,28 +237,33 @@ class Config {
       "fields": [
         {
           "name": "datasetid",
-          "short": "Dataset identifier",
-          "type": "`$STRING`"
+          "title": "Datasetid",
+          "type": "`$STRING`",
+          "short": "Dataset identifier"
         },
         {
           "name": "fields",
+          "title": "Fields",
           "type": "`$OBJECT`"
         },
         {
           "name": "geometry",
-          "short": "GeoJSON geometry object",
-          "type": "`$OBJECT`"
+          "title": "Geometry",
+          "type": "`$OBJECT`",
+          "short": "GeoJSON geometry object"
         },
         {
-          "format": "date-time",
           "name": "record_timestamp",
+          "title": "Record Timestamp",
+          "type": "`$STRING`",
           "short": "Timestamp of record creation or update",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "recordid",
-          "short": "Unique record identifier",
-          "type": "`$STRING`"
+          "title": "Recordid",
+          "type": "`$STRING`",
+          "short": "Unique record identifier"
         }
       ],
       "name": "download",
@@ -272,37 +273,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "global-shark-attack",
-                    "kind": "query",
-                    "name": "dataset",
-                    "orig": "dataset",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "json",
-                    "kind": "query",
-                    "name": "format",
-                    "orig": "format",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_country",
-                    "orig": "refine_country",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_type",
-                    "orig": "refine_type",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/download",
@@ -311,6 +281,45 @@ class Config {
                   "lit": "download"
                 }
               ],
+              "parts": [
+                "download"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "dataset",
+                    "orig": "dataset",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "global-shark-attack"
+                  },
+                  {
+                    "name": "format",
+                    "orig": "format",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "json"
+                  },
+                  {
+                    "name": "refine_country",
+                    "orig": "refine_country",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "refine_type",
+                    "orig": "refine_type",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "dataset",
@@ -318,14 +327,7 @@ class Config {
                   "refine_country",
                   "refine_type"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "download"
-              ]
+              }
             }
           ]
         }
@@ -338,28 +340,33 @@ class Config {
       "fields": [
         {
           "name": "datasetid",
-          "short": "Dataset identifier",
-          "type": "`$STRING`"
+          "title": "Datasetid",
+          "type": "`$STRING`",
+          "short": "Dataset identifier"
         },
         {
           "name": "fields",
+          "title": "Fields",
           "type": "`$OBJECT`"
         },
         {
           "name": "geometry",
-          "short": "GeoJSON geometry object",
-          "type": "`$OBJECT`"
+          "title": "Geometry",
+          "type": "`$OBJECT`",
+          "short": "GeoJSON geometry object"
         },
         {
-          "format": "date-time",
           "name": "record_timestamp",
+          "title": "Record Timestamp",
+          "type": "`$STRING`",
           "short": "Timestamp of record creation or update",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "recordid",
-          "short": "Unique record identifier",
-          "type": "`$STRING`"
+          "title": "Recordid",
+          "type": "`$STRING`",
+          "short": "Unique record identifier"
         }
       ],
       "name": "search",
@@ -369,74 +376,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "global-shark-attack",
-                    "kind": "query",
-                    "name": "dataset",
-                    "orig": "dataset",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "facet",
-                    "orig": "facet",
-                    "type": "`$ARRAY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "q",
-                    "orig": "q",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_activity",
-                    "orig": "refine_activity",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_country",
-                    "orig": "refine_country",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_species",
-                    "orig": "refine_species",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "refine_type",
-                    "orig": "refine_type",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 10,
-                    "kind": "query",
-                    "name": "row",
-                    "orig": "row",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 0,
-                    "kind": "query",
-                    "name": "start",
-                    "orig": "start",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/search",
@@ -445,6 +384,82 @@ class Config {
                   "lit": "search"
                 }
               ],
+              "parts": [
+                "search"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "dataset",
+                    "orig": "dataset",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "global-shark-attack"
+                  },
+                  {
+                    "name": "facet",
+                    "orig": "facet",
+                    "type": "`$ARRAY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "q",
+                    "orig": "q",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "refine_activity",
+                    "orig": "refine_activity",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "refine_country",
+                    "orig": "refine_country",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "refine_species",
+                    "orig": "refine_species",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "refine_type",
+                    "orig": "refine_type",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "row",
+                    "orig": "row",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 10
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "start",
+                    "orig": "start",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 0
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "dataset",
@@ -458,14 +473,7 @@ class Config {
                   "sort",
                   "start"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "search"
-              ]
+              }
             }
           ]
         }

@@ -1,7 +1,7 @@
 // Typed models for the GlobalSharkAttack SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,8 +14,6 @@ import (
 
 // Analyze is the typed data model for the analyze entity.
 type Analyze struct {
-	X *string `json:"x,omitempty"`
-	Y *float64 `json:"y,omitempty"`
 }
 
 // AnalyzeListMatch is the typed request payload for Analyze.ListTyped.
@@ -30,11 +28,6 @@ type AnalyzeListMatch struct {
 
 // Download is the typed data model for the download entity.
 type Download struct {
-	Datasetid *string `json:"datasetid,omitempty"`
-	Fields *map[string]any `json:"fields,omitempty"`
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	RecordTimestamp *string `json:"record_timestamp,omitempty"`
-	Recordid *string `json:"recordid,omitempty"`
 }
 
 // DownloadListMatch is the typed request payload for Download.ListTyped.
@@ -47,11 +40,6 @@ type DownloadListMatch struct {
 
 // Search is the typed data model for the search entity.
 type Search struct {
-	Datasetid *string `json:"datasetid,omitempty"`
-	Fields *map[string]any `json:"fields,omitempty"`
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	RecordTimestamp *string `json:"record_timestamp,omitempty"`
-	Recordid *string `json:"recordid,omitempty"`
 }
 
 // SearchListMatch is the typed request payload for Search.ListTyped.

@@ -93,13 +93,15 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "x",
-						"short": "X-axis value",
+						"title": "X",
 						"type": "`$STRING`",
+						"short": "X-axis value",
 					},
 					map[string]any{
 						"name": "y",
-						"short": "Aggregated Y-axis value",
+						"title": "Y",
 						"type": "`$NUMBER`",
+						"short": "Aggregated Y-axis value",
 					},
 				},
 				"name": "analyze",
@@ -109,55 +111,63 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "global-shark-attack",
-											"kind": "query",
-											"name": "dataset",
-											"orig": "dataset",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "COUNT",
-											"kind": "query",
-											"name": "func",
-											"orig": "func",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_country",
-											"orig": "refine_country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_type",
-											"orig": "refine_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "x",
-											"orig": "x",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "y",
-											"orig": "y",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/analyze",
 								"segments": []any{
 									map[string]any{
 										"lit": "analyze",
+									},
+								},
+								"parts": []any{
+									"analyze",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "dataset",
+											"orig": "dataset",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "global-shark-attack",
+										},
+										map[string]any{
+											"name": "func",
+											"orig": "func",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "COUNT",
+										},
+										map[string]any{
+											"name": "refine_country",
+											"orig": "refine_country",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "refine_type",
+											"orig": "refine_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "x",
+											"orig": "x",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "y",
+											"orig": "y",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -169,13 +179,6 @@ func MakeConfig() map[string]any {
 										"x",
 										"y",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"analyze",
 								},
 							},
 						},
@@ -189,28 +192,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "datasetid",
-						"short": "Dataset identifier",
+						"title": "Datasetid",
 						"type": "`$STRING`",
+						"short": "Dataset identifier",
 					},
 					map[string]any{
 						"name": "fields",
+						"title": "Fields",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "geometry",
-						"short": "GeoJSON geometry object",
+						"title": "Geometry",
 						"type": "`$OBJECT`",
+						"short": "GeoJSON geometry object",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "record_timestamp",
-						"short": "Timestamp of record creation or update",
+						"title": "Record Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of record creation or update",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "recordid",
-						"short": "Unique record identifier",
+						"title": "Recordid",
 						"type": "`$STRING`",
+						"short": "Unique record identifier",
 					},
 				},
 				"name": "download",
@@ -220,43 +228,51 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "global-shark-attack",
-											"kind": "query",
-											"name": "dataset",
-											"orig": "dataset",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_country",
-											"orig": "refine_country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_type",
-											"orig": "refine_type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/download",
 								"segments": []any{
 									map[string]any{
 										"lit": "download",
+									},
+								},
+								"parts": []any{
+									"download",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "dataset",
+											"orig": "dataset",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "global-shark-attack",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+										map[string]any{
+											"name": "refine_country",
+											"orig": "refine_country",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "refine_type",
+											"orig": "refine_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -266,13 +282,6 @@ func MakeConfig() map[string]any {
 										"refine_country",
 										"refine_type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"download",
 								},
 							},
 						},
@@ -286,28 +295,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "datasetid",
-						"short": "Dataset identifier",
+						"title": "Datasetid",
 						"type": "`$STRING`",
+						"short": "Dataset identifier",
 					},
 					map[string]any{
 						"name": "fields",
+						"title": "Fields",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "geometry",
-						"short": "GeoJSON geometry object",
+						"title": "Geometry",
 						"type": "`$OBJECT`",
+						"short": "GeoJSON geometry object",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "record_timestamp",
-						"short": "Timestamp of record creation or update",
+						"title": "Record Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of record creation or update",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "recordid",
-						"short": "Unique record identifier",
+						"title": "Recordid",
 						"type": "`$STRING`",
+						"short": "Unique record identifier",
 					},
 				},
 				"name": "search",
@@ -317,80 +331,88 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "global-shark-attack",
-											"kind": "query",
-											"name": "dataset",
-											"orig": "dataset",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "facet",
-											"orig": "facet",
-											"type": "`$ARRAY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_activity",
-											"orig": "refine_activity",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_country",
-											"orig": "refine_country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_species",
-											"orig": "refine_species",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "refine_type",
-											"orig": "refine_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 10,
-											"kind": "query",
-											"name": "row",
-											"orig": "row",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
 								"segments": []any{
 									map[string]any{
 										"lit": "search",
+									},
+								},
+								"parts": []any{
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "dataset",
+											"orig": "dataset",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "global-shark-attack",
+										},
+										map[string]any{
+											"name": "facet",
+											"orig": "facet",
+											"type": "`$ARRAY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "refine_activity",
+											"orig": "refine_activity",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "refine_country",
+											"orig": "refine_country",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "refine_species",
+											"orig": "refine_species",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "refine_type",
+											"orig": "refine_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "row",
+											"orig": "row",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 10,
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+										},
 									},
 								},
 								"select": map[string]any{
@@ -406,13 +428,6 @@ func MakeConfig() map[string]any {
 										"sort",
 										"start",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"search",
 								},
 							},
 						},

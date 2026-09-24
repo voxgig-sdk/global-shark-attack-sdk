@@ -19,7 +19,6 @@ import type {
   AnalyzeListMatch,
 } from '../GlobalSharkAttackTypes'
 
-// TODO: needs Entity superclass
 class AnalyzeEntity extends GlobalSharkAttackEntityBase<Analyze> {
 
   constructor(client: GlobalSharkAttackSDK, entopts: any) {

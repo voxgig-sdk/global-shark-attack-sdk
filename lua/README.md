@@ -43,7 +43,7 @@ local analyzes, err = client:Analyze():list()
 if err then error(err) end
 
 for _, item in ipairs(analyzes) do
-  print(item["x"])
+  print(item)
 end
 ```
 

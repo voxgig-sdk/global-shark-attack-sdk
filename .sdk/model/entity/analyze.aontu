@@ -1,0 +1,111 @@
+# Entity: analyze
+
+main: kit: entity: analyze: {
+
+  alias: field: {}
+
+  fields: {
+    x: {
+      h: "X"
+      n: "x"
+      r: false
+      sh: "X-axis value"
+      t: "`$STRING`"
+    }
+    y: {
+      h: "Y"
+      n: "y"
+      r: false
+      sh: "Aggregated Y-axis value"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "analyze"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /analyze"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "global-shark-attack"
+                k: "query"
+                n: "dataset"
+                or: "dataset"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "COUNT"
+                k: "query"
+                n: "func"
+                or: "func"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine_country"
+                or: "refine_country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine_type"
+                or: "refine_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "x"
+                or: "x"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "y"
+                or: "y"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/analyze"
+          q: {
+            exist: [
+              "dataset"
+              "func"
+              "refine_country"
+              "refine_type"
+              "x"
+              "y"
+            ]
+          }
+          s: [
+            {
+              lit: "analyze"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

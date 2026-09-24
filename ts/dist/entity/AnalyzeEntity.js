@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnalyzeEntity = void 0;
 const GlobalSharkAttackEntityBase_1 = require("../GlobalSharkAttackEntityBase");
-// TODO: needs Entity superclass
 class AnalyzeEntity extends GlobalSharkAttackEntityBase_1.GlobalSharkAttackEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

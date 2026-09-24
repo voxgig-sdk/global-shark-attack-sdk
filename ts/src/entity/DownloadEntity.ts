@@ -19,7 +19,6 @@ import type {
   DownloadListMatch,
 } from '../GlobalSharkAttackTypes'
 
-// TODO: needs Entity superclass
 class DownloadEntity extends GlobalSharkAttackEntityBase<Download> {
 
   constructor(client: GlobalSharkAttackSDK, entopts: any) {

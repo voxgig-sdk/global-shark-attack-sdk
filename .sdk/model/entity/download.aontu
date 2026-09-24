@@ -1,0 +1,116 @@
+# Entity: download
+
+main: kit: entity: download: {
+
+  alias: field: {}
+
+  fields: {
+    datasetid: {
+      h: "Datasetid"
+      n: "datasetid"
+      r: false
+      sh: "Dataset identifier"
+      t: "`$STRING`"
+    }
+    fields: {
+      h: "Fields"
+      n: "fields"
+      r: false
+      t: "`$OBJECT`"
+    }
+    geometry: {
+      h: "Geometry"
+      n: "geometry"
+      r: false
+      sh: "GeoJSON geometry object"
+      t: "`$OBJECT`"
+    }
+    record_timestamp: {
+      fo: "date-time"
+      h: "Record Timestamp"
+      n: "record_timestamp"
+      r: false
+      sh: "Timestamp of record creation or update"
+      t: "`$STRING`"
+    }
+    recordid: {
+      h: "Recordid"
+      n: "recordid"
+      r: false
+      sh: "Unique record identifier"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "download"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /download"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "global-shark-attack"
+                k: "query"
+                n: "dataset"
+                or: "dataset"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine_country"
+                or: "refine_country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine_type"
+                or: "refine_type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/download"
+          q: {
+            exist: [
+              "dataset"
+              "format"
+              "refine_country"
+              "refine_type"
+            ]
+          }
+          s: [
+            {
+              lit: "download"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
