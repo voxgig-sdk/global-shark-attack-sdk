@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 GlobalSharkAttackUtility.registrar = ->(u) {
   u.clean = GlobalSharkAttackUtilities::Clean
+  u.clean_add = GlobalSharkAttackUtilities::CleanAdd
+  u.clean_explain = GlobalSharkAttackUtilities::CleanExplain
   u.done = GlobalSharkAttackUtilities::Done
   u.make_error = GlobalSharkAttackUtilities::MakeError
   u.feature_add = GlobalSharkAttackUtilities::FeatureAdd

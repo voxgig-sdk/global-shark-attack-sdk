@@ -80,28 +80,28 @@ main: kit: entity: search: {
               {
                 k: "query"
                 n: "refine_activity"
-                or: "refine_activity"
+                or: "refine.activity"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "refine_country"
-                or: "refine_country"
+                or: "refine.country"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "refine_species"
-                or: "refine_species"
+                or: "refine.species"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "refine_type"
-                or: "refine_type"
+                or: "refine.type"
                 r: false
                 t: "`$STRING`"
               }
@@ -109,7 +109,7 @@ main: kit: entity: search: {
                 ex: 10
                 k: "query"
                 n: "row"
-                or: "row"
+                or: "rows"
                 r: false
                 t: "`$INTEGER`"
               }

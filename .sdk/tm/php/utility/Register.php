@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 GlobalSharkAttackUtility::setRegistrar(function (GlobalSharkAttackUtility $u): void {
     $u->clean = [GlobalSharkAttackClean::class, 'call'];
+    $u->clean_add = [GlobalSharkAttackClean::class, 'add'];
+    $u->clean_explain = [GlobalSharkAttackDone::class, 'clean_explain'];
     $u->done = [GlobalSharkAttackDone::class, 'call'];
     $u->make_error = [GlobalSharkAttackMakeError::class, 'call'];
     $u->feature_add = [GlobalSharkAttackFeatureAdd::class, 'call'];

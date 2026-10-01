@@ -151,7 +151,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_country",
-                        "or": "refine_country",
+                        "or": "refine.country",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -159,7 +159,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_type",
-                        "or": "refine_type",
+                        "or": "refine.type",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -296,7 +296,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_country",
-                        "or": "refine_country",
+                        "or": "refine.country",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -304,7 +304,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_type",
-                        "or": "refine_type",
+                        "or": "refine.type",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -430,7 +430,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_activity",
-                        "or": "refine_activity",
+                        "or": "refine.activity",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -438,7 +438,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_country",
-                        "or": "refine_country",
+                        "or": "refine.country",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -446,7 +446,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_species",
-                        "or": "refine_species",
+                        "or": "refine.species",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -454,7 +454,7 @@
                         "a": true,
                         "k": "query",
                         "n": "refine_type",
-                        "or": "refine_type",
+                        "or": "refine.type",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -463,7 +463,7 @@
                         "ex": 10,
                         "k": "query",
                         "n": "row",
-                        "or": "row",
+                        "or": "rows",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -1046,7 +1046,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

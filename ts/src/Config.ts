@@ -191,13 +191,13 @@ class Config {
                   },
                   {
                     "name": "refine_country",
-                    "orig": "refine_country",
+                    "orig": "refine.country",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "refine_type",
-                    "orig": "refine_type",
+                    "orig": "refine.type",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
@@ -308,13 +308,13 @@ class Config {
                   },
                   {
                     "name": "refine_country",
-                    "orig": "refine_country",
+                    "orig": "refine.country",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "refine_type",
-                    "orig": "refine_type",
+                    "orig": "refine.type",
                     "type": "`$STRING`",
                     "kind": "query"
                   }
@@ -416,31 +416,31 @@ class Config {
                   },
                   {
                     "name": "refine_activity",
-                    "orig": "refine_activity",
+                    "orig": "refine.activity",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "refine_country",
-                    "orig": "refine_country",
+                    "orig": "refine.country",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "refine_species",
-                    "orig": "refine_species",
+                    "orig": "refine.species",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "refine_type",
-                    "orig": "refine_type",
+                    "orig": "refine.type",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "row",
-                    "orig": "row",
+                    "orig": "rows",
                     "type": "`$INTEGER`",
                     "kind": "query",
                     "example": 10

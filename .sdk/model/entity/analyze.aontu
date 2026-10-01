@@ -53,14 +53,14 @@ main: kit: entity: analyze: {
               {
                 k: "query"
                 n: "refine_country"
-                or: "refine_country"
+                or: "refine.country"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "refine_type"
-                or: "refine_type"
+                or: "refine.type"
                 r: false
                 t: "`$STRING`"
               }
