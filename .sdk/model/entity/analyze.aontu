@@ -85,12 +85,11 @@ main: kit: entity: analyze: {
           q: {
             exist: [
               "dataset"
-              "func"
-              "refine_country"
-              "refine_type"
-              "x"
-              "y"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

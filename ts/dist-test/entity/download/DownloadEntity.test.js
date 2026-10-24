@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Download();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('download hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.GlobalSharkAttackSDK.test(offline).Download().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.GlobalSharkAttackSDK.test(offline).Download()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.GlobalSharkAttackSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Download().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.GlobalSharkAttackSDK.test().Download().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.GlobalSharkAttackSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Download().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Download().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.GlobalSharkAttackSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Download().list({ "dataset": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.GLOBAL_SHARK_ATTACK_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "datasetid": { "a": true, "h": "Datasetid", "n": "datasetid", "r": false, "sh": "Dataset identifier", "t": "`$STRING`", "key$": "datasetid", "index$": 0 }, "fields": { "a": true, "h": "Fields", "n": "fields", "r": false, "t": "`$OBJECT`", "key$": "fields", "index$": 1 }, "geometry": { "a": true, "h": "Geometry", "n": "geometry", "r": false, "sh": "GeoJSON geometry object", "t": "`$OBJECT`", "key$": "geometry", "index$": 2 }, "record_timestamp": { "a": true, "fo": "date-time", "h": "Record Timestamp", "n": "record_timestamp", "r": false, "sh": "Timestamp of record creation or update", "t": "`$STRING`", "key$": "record_timestamp", "index$": 3 }, "recordid": { "a": true, "h": "Recordid", "n": "recordid", "r": false, "sh": "Unique record identifier", "t": "`$STRING`", "key$": "recordid", "index$": 4 } }, "name": "download", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /download", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "global-shark-attack", "k": "query", "n": "dataset", "or": "dataset", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "refine_country", "or": "refine.country", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "refine_type", "or": "refine.type", "r": false, "t": "`$STRING`", "index$": 3 }] }, "k": "http", "m": "GET", "o": "/download", "q": { "exist": ["dataset", "format", "refine_country", "refine_type"] }, "r": {}, "s": [{ "lit": "download" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "download", "name__orig": "download", "Name": "Download", "name_": "download", "name-": "download", "NAME": "DOWNLOAD", "index$": 1 }, { "active": true, "entity": "download", "key$": "BasicDownloadFlow", "kind": "basic", "name": "BasicDownloadFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "download_ref01" } }], "index$": 0 }] }, 'Download', { "GET /download": { "protocol": "http", "parameters": [{ "name": "dataset", "in": "query", "required": true, "description": "Dataset identifier", "schema": { "type": "string", "default": "global-shark-attack" }, "index$": 0 }, { "name": "format", "in": "query", "description": "Download format", "schema": { "type": "string", "enum": ["json", "csv", "xls", "geojson"], "default": "json" }, "index$": 1 }, { "name": "refine.type", "in": "query", "description": "Filter by incident type", "schema": { "type": "string" }, "index$": 2 }, { "name": "refine.country", "in": "query", "description": "Filter by country", "schema": { "type": "string" }, "index$": 3 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "datasetid": { "a": true, "h": "Datasetid", "n": "datasetid", "r": false, "sh": "Dataset identifier", "t": "`$STRING`", "key$": "datasetid", "index$": 0 }, "fields": { "a": true, "h": "Fields", "n": "fields", "r": false, "t": "`$OBJECT`", "key$": "fields", "index$": 1 }, "geometry": { "a": true, "h": "Geometry", "n": "geometry", "r": false, "sh": "GeoJSON geometry object", "t": "`$OBJECT`", "key$": "geometry", "index$": 2 }, "record_timestamp": { "a": true, "fo": "date-time", "h": "Record Timestamp", "n": "record_timestamp", "r": false, "sh": "Timestamp of record creation or update", "t": "`$STRING`", "key$": "record_timestamp", "index$": 3 }, "recordid": { "a": true, "h": "Recordid", "n": "recordid", "r": false, "sh": "Unique record identifier", "t": "`$STRING`", "key$": "recordid", "index$": 4 } }, "name": "download", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /download", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "global-shark-attack", "k": "query", "n": "dataset", "or": "dataset", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "refine_country", "or": "refine.country", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "refine_type", "or": "refine.type", "r": false, "t": "`$STRING`", "index$": 3 }] }, "k": "http", "m": "GET", "o": "/download", "q": { "exist": ["dataset"] }, "r": {}, "rs": { "alternatives": [{ "kind": "json", "media": "application/geo+json" }, { "binary": true, "kind": "raw", "media": "application/vnd.ms-excel" }, { "kind": "raw", "media": "text/csv" }], "kind": "json", "media": "application/json" }, "s": [{ "lit": "download" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "download", "name__orig": "download", "Name": "Download", "name_": "download", "name-": "download", "NAME": "DOWNLOAD", "index$": 1 }, { "active": true, "entity": "download", "key$": "BasicDownloadFlow", "kind": "basic", "name": "BasicDownloadFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "download_ref01" } }], "index$": 0 }] }, 'Download', { "GET /download": { "protocol": "http", "parameters": [{ "name": "dataset", "in": "query", "required": true, "description": "Dataset identifier", "schema": { "type": "string", "default": "global-shark-attack" }, "index$": 0 }, { "name": "format", "in": "query", "description": "Download format", "schema": { "type": "string", "enum": ["json", "csv", "xls", "geojson"], "default": "json" }, "index$": 1 }, { "name": "refine.type", "in": "query", "description": "Filter by incident type", "schema": { "type": "string" }, "index$": 2 }, { "name": "refine.country", "in": "query", "description": "Filter by country", "schema": { "type": "string" }, "index$": 3 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const download_ref01_list = (await download_ref01_ent.list(download_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

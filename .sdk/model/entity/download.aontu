@@ -92,10 +92,26 @@ main: kit: entity: download: {
           q: {
             exist: [
               "dataset"
-              "format"
-              "refine_country"
-              "refine_type"
             ]
+          }
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/vnd.ms-excel"
+              }
+              {
+                kind: "raw"
+                media: "text/csv"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

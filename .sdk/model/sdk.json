@@ -186,15 +186,14 @@
                   "o": "/analyze",
                   "q": {
                     "exist": [
-                      "dataset",
-                      "func",
-                      "refine_country",
-                      "refine_type",
-                      "x",
-                      "y"
+                      "dataset"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "analyze"
@@ -315,13 +314,29 @@
                   "o": "/download",
                   "q": {
                     "exist": [
-                      "dataset",
-                      "format",
-                      "refine_country",
-                      "refine_type"
+                      "dataset"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "binary": true,
+                        "kind": "raw",
+                        "media": "application/vnd.ms-excel"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/csv"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "download"
@@ -491,19 +506,14 @@
                   "o": "/search",
                   "q": {
                     "exist": [
-                      "dataset",
-                      "facet",
-                      "q",
-                      "refine_activity",
-                      "refine_country",
-                      "refine_species",
-                      "refine_type",
-                      "row",
-                      "sort",
-                      "start"
+                      "dataset"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "search"
@@ -844,6 +854,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1026,7 +1037,7 @@
             "url": "https://public.opendatasoft.com/api/records/1.0"
           }
         ],
-        "summary": "The Global Shark Attack File (GSAF) API offers access to a comprehensive dataset of human-shark interactions, including detailed incident reports categorized by type, such as unprovoked, provoked, boat-related, war-related, and questionabl…",
+        "summary": "The Global Shark Attack File (GSAF) API offers access to a comprehensive dataset of human-shark interactions, including detailed incident reports categorized by type, such as unprovoked, provoked, boat-related, war-related, and…",
         "title": "Global Shark Attack API",
         "version": "1.0.0",
         "website": "https://public.opendatasoft.com"
@@ -1035,7 +1046,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1088,6 +1099,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1318,7 +1334,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1695,6 +1714,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

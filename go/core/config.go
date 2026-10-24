@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -161,24 +162,25 @@ func MakeConfig() map[string]any {
 											"orig": "x",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "y",
 											"orig": "y",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
 										"dataset",
-										"func",
-										"refine_country",
-										"refine_type",
-										"x",
-										"y",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -278,10 +280,26 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"dataset",
-										"format",
-										"refine_country",
-										"refine_type",
 									},
+								},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"binary": true,
+											"kind": "raw",
+											"media": "application/vnd.ms-excel",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/csv",
+										},
+									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -418,16 +436,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"dataset",
-										"facet",
-										"q",
-										"refine_activity",
-										"refine_country",
-										"refine_species",
-										"refine_type",
-										"row",
-										"sort",
-										"start",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

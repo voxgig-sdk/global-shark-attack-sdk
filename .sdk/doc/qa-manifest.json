@@ -3,5 +3,20 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Aggregated Y-axis value",
+      "Dataset identifier",
+      "GeoJSON geometry object",
+      "Production server",
+      "Successful analysis",
+      "Successful download",
+      "Successful response with shark attack records",
+      "The Global Shark Attack File (GSAF) API offers access to a comprehensive dataset of human-shark interactions, including detailed incident reports categorized by type, such as unprovoked, provoked, boat-related, war-related, and questionable incidents. Users can explore bite patterns, species identification, and circumstances surrounding shark encounters, providing valuable insights for researchers, enthusiasts, and conservationists interested in understanding shark behavior and the rarity of shark attacks.",
+      "Timestamp of record creation or update",
+      "Unique record identifier",
+      "X-axis value"
+    ]
+  }
 }

@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { GlobalSharkAttackSDK, BaseFeature, stdutil } from '../../..'
+import { GlobalSharkAttackSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('AnalyzeEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('analyze hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of GlobalSharkAttackSDK.test(offline).Analyze().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of GlobalSharkAttackSDK.test(offline).Analyze()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = GlobalSharkAttackSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Analyze().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of GlobalSharkAttackSDK.test().Analyze().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new GlobalSharkAttackSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Analyze().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Analyze().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = GlobalSharkAttackSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Analyze().list({"dataset":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.GLOBAL_SHARK_ATTACK_TEST_LIVE
@@ -51,7 +109,7 @@ describe('AnalyzeEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"x":{"a":true,"h":"X","n":"x","r":false,"sh":"X-axis value","t":"`$STRING`","key$":"x","index$":0},"y":{"a":true,"h":"Y","n":"y","r":false,"sh":"Aggregated Y-axis value","t":"`$NUMBER`","key$":"y","index$":1}},"name":"analyze","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /analyze","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"global-shark-attack","k":"query","n":"dataset","or":"dataset","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"COUNT","k":"query","n":"func","or":"func","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"refine_country","or":"refine.country","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"refine_type","or":"refine.type","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"x","or":"x","r":false,"t":"`$STRING`","index$":4},{"a":true,"k":"query","n":"y","or":"y","r":false,"t":"`$STRING`","index$":5}]},"k":"http","m":"GET","o":"/analyze","q":{"exist":["dataset","func","refine_country","refine_type","x","y"]},"r":{},"s":[{"lit":"analyze"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"analyze","name__orig":"analyze","Name":"Analyze","name_":"analyze","name-":"analyze","NAME":"ANALYZE","index$":0}, {"active":true,"entity":"analyze","key$":"BasicAnalyzeFlow","kind":"basic","name":"BasicAnalyzeFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"analyze_ref01"}}],"index$":0}]}, 'Analyze', {"GET /analyze":{"protocol":"http","parameters":[{"name":"dataset","in":"query","required":true,"description":"Dataset identifier","schema":{"type":"string","default":"global-shark-attack"},"index$":0},{"name":"x","in":"query","description":"Field name for X-axis aggregation","schema":{"type":"string"},"index$":1},{"name":"y","in":"query","description":"Field name for Y-axis aggregation","schema":{"type":"string"},"index$":2},{"name":"func","in":"query","description":"Aggregation function to apply","schema":{"type":"string","enum":["COUNT","AVG","SUM","MIN","MAX"],"default":"COUNT"},"index$":3},{"name":"refine.type","in":"query","description":"Filter by incident type","schema":{"type":"string"},"index$":4},{"name":"refine.country","in":"query","description":"Filter by country","schema":{"type":"string"},"index$":5}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"x":{"a":true,"h":"X","n":"x","r":false,"sh":"X-axis value","t":"`$STRING`","key$":"x","index$":0},"y":{"a":true,"h":"Y","n":"y","r":false,"sh":"Aggregated Y-axis value","t":"`$NUMBER`","key$":"y","index$":1}},"name":"analyze","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /analyze","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"global-shark-attack","k":"query","n":"dataset","or":"dataset","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"COUNT","k":"query","n":"func","or":"func","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"refine_country","or":"refine.country","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"refine_type","or":"refine.type","r":false,"t":"`$STRING`","index$":3},{"a":true,"k":"query","n":"x","or":"x","r":false,"t":"`$STRING`","index$":4},{"a":true,"k":"query","n":"y","or":"y","r":false,"t":"`$STRING`","index$":5}]},"k":"http","m":"GET","o":"/analyze","q":{"exist":["dataset"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"analyze"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"analyze","name__orig":"analyze","Name":"Analyze","name_":"analyze","name-":"analyze","NAME":"ANALYZE","index$":0}, {"active":true,"entity":"analyze","key$":"BasicAnalyzeFlow","kind":"basic","name":"BasicAnalyzeFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"analyze_ref01"}}],"index$":0}]}, 'Analyze', {"GET /analyze":{"protocol":"http","parameters":[{"name":"dataset","in":"query","required":true,"description":"Dataset identifier","schema":{"type":"string","default":"global-shark-attack"},"index$":0},{"name":"x","in":"query","description":"Field name for X-axis aggregation","schema":{"type":"string"},"index$":1},{"name":"y","in":"query","description":"Field name for Y-axis aggregation","schema":{"type":"string"},"index$":2},{"name":"func","in":"query","description":"Aggregation function to apply","schema":{"type":"string","enum":["COUNT","AVG","SUM","MIN","MAX"],"default":"COUNT"},"index$":3},{"name":"refine.type","in":"query","description":"Filter by incident type","schema":{"type":"string"},"index$":4},{"name":"refine.country","in":"query","description":"Filter by country","schema":{"type":"string"},"index$":5}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('AnalyzeEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

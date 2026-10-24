@@ -79,6 +79,7 @@ module GlobalSharkAttackConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -169,24 +170,25 @@ module GlobalSharkAttackConfig
                         "orig" => "x",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                       {
                         "name" => "y",
                         "orig" => "y",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                     ],
                   },
                   "select" => {
                     "exist" => [
                       "dataset",
-                      "func",
-                      "refine_country",
-                      "refine_type",
-                      "x",
-                      "y",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -286,10 +288,26 @@ module GlobalSharkAttackConfig
                   "select" => {
                     "exist" => [
                       "dataset",
-                      "format",
-                      "refine_country",
-                      "refine_type",
                     ],
+                  },
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "binary" => true,
+                        "kind" => "raw",
+                        "media" => "application/vnd.ms-excel",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/csv",
+                      },
+                    ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -426,16 +444,11 @@ module GlobalSharkAttackConfig
                   "select" => {
                     "exist" => [
                       "dataset",
-                      "facet",
-                      "q",
-                      "refine_activity",
-                      "refine_country",
-                      "refine_species",
-                      "refine_type",
-                      "row",
-                      "sort",
-                      "start",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

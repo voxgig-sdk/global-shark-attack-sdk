@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Search();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('search hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.GlobalSharkAttackSDK.test(offline).Search().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.GlobalSharkAttackSDK.test(offline).Search()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.GlobalSharkAttackSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Search().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.GlobalSharkAttackSDK.test().Search().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.GlobalSharkAttackSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Search().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Search().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.GlobalSharkAttackSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Search().list({ "dataset": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.GLOBAL_SHARK_ATTACK_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "datasetid": { "a": true, "h": "Datasetid", "n": "datasetid", "r": false, "sh": "Dataset identifier", "t": "`$STRING`", "key$": "datasetid", "index$": 0 }, "fields": { "a": true, "h": "Fields", "n": "fields", "r": false, "t": "`$OBJECT`", "key$": "fields", "index$": 1 }, "geometry": { "a": true, "h": "Geometry", "n": "geometry", "r": false, "sh": "GeoJSON geometry object", "t": "`$OBJECT`", "key$": "geometry", "index$": 2 }, "record_timestamp": { "a": true, "fo": "date-time", "h": "Record Timestamp", "n": "record_timestamp", "r": false, "sh": "Timestamp of record creation or update", "t": "`$STRING`", "key$": "record_timestamp", "index$": 3 }, "recordid": { "a": true, "h": "Recordid", "n": "recordid", "r": false, "sh": "Unique record identifier", "t": "`$STRING`", "key$": "recordid", "index$": 4 } }, "name": "search", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /search", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "global-shark-attack", "k": "query", "n": "dataset", "or": "dataset", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "facet", "or": "facet", "r": false, "t": "`$ARRAY`", "index$": 1 }, { "a": true, "k": "query", "n": "q", "or": "q", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "refine_activity", "or": "refine.activity", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "refine_country", "or": "refine.country", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "k": "query", "n": "refine_species", "or": "refine.species", "r": false, "t": "`$STRING`", "index$": 5 }, { "a": true, "k": "query", "n": "refine_type", "or": "refine.type", "r": false, "t": "`$STRING`", "index$": 6 }, { "a": true, "ex": 10, "k": "query", "n": "row", "or": "rows", "r": false, "t": "`$INTEGER`", "index$": 7 }, { "a": true, "k": "query", "n": "sort", "or": "sort", "r": false, "t": "`$STRING`", "index$": 8 }, { "a": true, "ex": 0, "k": "query", "n": "start", "or": "start", "r": false, "t": "`$INTEGER`", "index$": 9 }] }, "k": "http", "m": "GET", "o": "/search", "q": { "exist": ["dataset", "facet", "q", "refine_activity", "refine_country", "refine_species", "refine_type", "row", "sort", "start"] }, "r": {}, "s": [{ "lit": "search" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "search", "name__orig": "search", "Name": "Search", "name_": "search", "name-": "search", "NAME": "SEARCH", "index$": 2 }, { "active": true, "entity": "search", "key$": "BasicSearchFlow", "kind": "basic", "name": "BasicSearchFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "search_ref01" } }], "index$": 0 }] }, 'Search', { "GET /search": { "protocol": "http", "parameters": [{ "name": "dataset", "in": "query", "required": true, "description": "Dataset identifier", "schema": { "type": "string", "default": "global-shark-attack" }, "index$": 0 }, { "name": "q", "in": "query", "description": "Full-text search query", "schema": { "type": "string" }, "index$": 1 }, { "name": "rows", "in": "query", "description": "Number of records to return (max 100)", "schema": { "type": "integer", "default": 10, "minimum": 1, "maximum": 100 }, "index$": 2 }, { "name": "start", "in": "query", "description": "Index of the first record to return (for pagination)", "schema": { "type": "integer", "default": 0, "minimum": 0 }, "index$": 3 }, { "name": "sort", "in": "query", "description": "Field name to sort by (prefix with - for descending order)", "schema": { "type": "string" }, "index$": 4 }, { "name": "refine.type", "in": "query", "description": "Filter by incident type (unprovoked, provoked, boat, war, questionable)", "schema": { "type": "string", "enum": ["Unprovoked", "Provoked", "Boat", "War", "Questionable"] }, "index$": 5 }, { "name": "refine.country", "in": "query", "description": "Filter by country where incident occurred", "schema": { "type": "string" }, "index$": 6 }, { "name": "refine.species", "in": "query", "description": "Filter by shark species", "schema": { "type": "string" }, "index$": 7 }, { "name": "refine.activity", "in": "query", "description": "Filter by victim activity at time of incident", "schema": { "type": "string" }, "index$": 8 }, { "name": "facet", "in": "query", "description": "Field names to facet on (can be repeated)", "schema": { "type": "array", "items": { "type": "string" } }, "explode": true, "index$": 9 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "datasetid": { "a": true, "h": "Datasetid", "n": "datasetid", "r": false, "sh": "Dataset identifier", "t": "`$STRING`", "key$": "datasetid", "index$": 0 }, "fields": { "a": true, "h": "Fields", "n": "fields", "r": false, "t": "`$OBJECT`", "key$": "fields", "index$": 1 }, "geometry": { "a": true, "h": "Geometry", "n": "geometry", "r": false, "sh": "GeoJSON geometry object", "t": "`$OBJECT`", "key$": "geometry", "index$": 2 }, "record_timestamp": { "a": true, "fo": "date-time", "h": "Record Timestamp", "n": "record_timestamp", "r": false, "sh": "Timestamp of record creation or update", "t": "`$STRING`", "key$": "record_timestamp", "index$": 3 }, "recordid": { "a": true, "h": "Recordid", "n": "recordid", "r": false, "sh": "Unique record identifier", "t": "`$STRING`", "key$": "recordid", "index$": 4 } }, "name": "search", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /search", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "global-shark-attack", "k": "query", "n": "dataset", "or": "dataset", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "facet", "or": "facet", "r": false, "t": "`$ARRAY`", "index$": 1 }, { "a": true, "k": "query", "n": "q", "or": "q", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "refine_activity", "or": "refine.activity", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "refine_country", "or": "refine.country", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "k": "query", "n": "refine_species", "or": "refine.species", "r": false, "t": "`$STRING`", "index$": 5 }, { "a": true, "k": "query", "n": "refine_type", "or": "refine.type", "r": false, "t": "`$STRING`", "index$": 6 }, { "a": true, "ex": 10, "k": "query", "n": "row", "or": "rows", "r": false, "t": "`$INTEGER`", "index$": 7 }, { "a": true, "k": "query", "n": "sort", "or": "sort", "r": false, "t": "`$STRING`", "index$": 8 }, { "a": true, "ex": 0, "k": "query", "n": "start", "or": "start", "r": false, "t": "`$INTEGER`", "index$": 9 }] }, "k": "http", "m": "GET", "o": "/search", "q": { "exist": ["dataset"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "search" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "search", "name__orig": "search", "Name": "Search", "name_": "search", "name-": "search", "NAME": "SEARCH", "index$": 2 }, { "active": true, "entity": "search", "key$": "BasicSearchFlow", "kind": "basic", "name": "BasicSearchFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "search_ref01" } }], "index$": 0 }] }, 'Search', { "GET /search": { "protocol": "http", "parameters": [{ "name": "dataset", "in": "query", "required": true, "description": "Dataset identifier", "schema": { "type": "string", "default": "global-shark-attack" }, "index$": 0 }, { "name": "q", "in": "query", "description": "Full-text search query", "schema": { "type": "string" }, "index$": 1 }, { "name": "rows", "in": "query", "description": "Number of records to return (max 100)", "schema": { "type": "integer", "default": 10, "minimum": 1, "maximum": 100 }, "index$": 2 }, { "name": "start", "in": "query", "description": "Index of the first record to return (for pagination)", "schema": { "type": "integer", "default": 0, "minimum": 0 }, "index$": 3 }, { "name": "sort", "in": "query", "description": "Field name to sort by (prefix with - for descending order)", "schema": { "type": "string" }, "index$": 4 }, { "name": "refine.type", "in": "query", "description": "Filter by incident type (unprovoked, provoked, boat, war, questionable)", "schema": { "type": "string", "enum": ["Unprovoked", "Provoked", "Boat", "War", "Questionable"] }, "index$": 5 }, { "name": "refine.country", "in": "query", "description": "Filter by country where incident occurred", "schema": { "type": "string" }, "index$": 6 }, { "name": "refine.species", "in": "query", "description": "Filter by shark species", "schema": { "type": "string" }, "index$": 7 }, { "name": "refine.activity", "in": "query", "description": "Filter by victim activity at time of incident", "schema": { "type": "string" }, "index$": 8 }, { "name": "facet", "in": "query", "description": "Field names to facet on (can be repeated)", "schema": { "type": "array", "items": { "type": "string" } }, "explode": true, "index$": 9 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const search_ref01_list = (await search_ref01_ent.list(search_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

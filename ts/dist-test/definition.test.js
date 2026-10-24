@@ -17,13 +17,17 @@ const PLAN = [
         "args": [],
         "select": {
             "dataset": "v1",
-            "func": "v1",
+            "func": "COUNT",
             "refine_country": "v1",
             "refine_type": "v1",
             "x": "v1",
             "y": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "dataset",
             "x",
@@ -31,6 +35,32 @@ const PLAN = [
             "func",
             "refine.type",
             "refine.country"
+        ],
+        "queryArgs": [
+            {
+                "name": "dataset",
+                "wire": "dataset"
+            },
+            {
+                "name": "func",
+                "wire": "func"
+            },
+            {
+                "name": "refine_country",
+                "wire": "refine.country"
+            },
+            {
+                "name": "refine_type",
+                "wire": "refine.type"
+            },
+            {
+                "name": "x",
+                "wire": "x"
+            },
+            {
+                "name": "y",
+                "wire": "y"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -51,16 +81,41 @@ const PLAN = [
         "args": [],
         "select": {
             "dataset": "v1",
-            "format": "v1",
+            "format": "json",
             "refine_country": "v1",
             "refine_type": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json",
+            "text/csv",
+            "application/vnd.ms-excel",
+            "application/geo+json"
+        ],
         "query": [
             "dataset",
             "format",
             "refine.type",
             "refine.country"
+        ],
+        "queryArgs": [
+            {
+                "name": "dataset",
+                "wire": "dataset"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "refine_country",
+                "wire": "refine.country"
+            },
+            {
+                "name": "refine_type",
+                "wire": "refine.type"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -69,37 +124,37 @@ const PLAN = [
                 "datasetid": "x",
                 "recordid": "x",
                 "fields": {
-                    "activity": "x",
-                    "age": "x",
-                    "area": "x",
                     "case_number": "x",
+                    "date": "2026-01-01",
+                    "year": 1,
+                    "type": "Unprovoked",
+                    "country": "x",
+                    "area": "x",
+                    "location": "x",
+                    "activity": "x",
+                    "name": "x",
+                    "sex": "M",
+                    "age": "x",
+                    "injury": "x",
+                    "fatal": "Y",
+                    "time": "x",
+                    "species": "x",
+                    "investigator_or_source": "x",
+                    "pdf": "x",
+                    "href_formula": "x",
+                    "href": "x",
                     "case_number_1": "x",
                     "case_number_2": "x",
-                    "country": "x",
-                    "date": "2026-01-01",
-                    "fatal": "Y",
+                    "original_order": 1,
                     "geopoint": [
                         1
-                    ],
-                    "href": "x",
-                    "href_formula": "x",
-                    "injury": "x",
-                    "investigator_or_source": "x",
-                    "location": "x",
-                    "name": "x",
-                    "original_order": 1,
-                    "pdf": "x",
-                    "sex": "M",
-                    "species": "x",
-                    "time": "x",
-                    "type": "Unprovoked",
-                    "year": 1
+                    ]
                 },
                 "geometry": {
+                    "type": "Point",
                     "coordinates": [
                         1
-                    ],
-                    "type": "Point"
+                    ]
                 },
                 "record_timestamp": "2026-01-01T00:00:00Z"
             }
@@ -121,11 +176,15 @@ const PLAN = [
             "refine_country": "v1",
             "refine_species": "v1",
             "refine_type": "v1",
-            "row": "v1",
+            "row": 10,
             "sort": "v1",
-            "start": "v1"
+            "start": 0
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "dataset",
             "q",
@@ -138,6 +197,48 @@ const PLAN = [
             "refine.activity",
             "facet"
         ],
+        "queryArgs": [
+            {
+                "name": "dataset",
+                "wire": "dataset"
+            },
+            {
+                "name": "facet",
+                "wire": "facet"
+            },
+            {
+                "name": "q",
+                "wire": "q"
+            },
+            {
+                "name": "refine_activity",
+                "wire": "refine.activity"
+            },
+            {
+                "name": "refine_country",
+                "wire": "refine.country"
+            },
+            {
+                "name": "refine_species",
+                "wire": "refine.species"
+            },
+            {
+                "name": "refine_type",
+                "wire": "refine.type"
+            },
+            {
+                "name": "row",
+                "wire": "rows"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
@@ -146,41 +247,41 @@ const PLAN = [
             "records": [
                 {
                     "datasetid": "x",
+                    "recordid": "x",
                     "fields": {
-                        "activity": "x",
-                        "age": "x",
-                        "area": "x",
                         "case_number": "x",
+                        "date": "2026-01-01",
+                        "year": 1,
+                        "type": "Unprovoked",
+                        "country": "x",
+                        "area": "x",
+                        "location": "x",
+                        "activity": "x",
+                        "name": "x",
+                        "sex": "M",
+                        "age": "x",
+                        "injury": "x",
+                        "fatal": "Y",
+                        "time": "x",
+                        "species": "x",
+                        "investigator_or_source": "x",
+                        "pdf": "x",
+                        "href_formula": "x",
+                        "href": "x",
                         "case_number_1": "x",
                         "case_number_2": "x",
-                        "country": "x",
-                        "date": "2026-01-01",
-                        "fatal": "Y",
+                        "original_order": 1,
                         "geopoint": [
                             1
-                        ],
-                        "href": "x",
-                        "href_formula": "x",
-                        "injury": "x",
-                        "investigator_or_source": "x",
-                        "location": "x",
-                        "name": "x",
-                        "original_order": 1,
-                        "pdf": "x",
-                        "sex": "M",
-                        "species": "x",
-                        "time": "x",
-                        "type": "Unprovoked",
-                        "year": 1
+                        ]
                     },
                     "geometry": {
+                        "type": "Point",
                         "coordinates": [
                             1
-                        ],
-                        "type": "Point"
+                        ]
                     },
-                    "record_timestamp": "2026-01-01T00:00:00Z",
-                    "recordid": "x"
+                    "record_timestamp": "2026-01-01T00:00:00Z"
                 }
             ],
             "facet_groups": [
